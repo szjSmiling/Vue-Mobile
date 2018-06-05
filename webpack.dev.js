@@ -93,7 +93,7 @@ module.exports = {
       models: path.resolve(__dirname, "./src/models"),
       components: path.resolve(__dirname, "./src/components"),
       $vuex: path.resolve(__dirname, "./src/vuex"),
-      config: path.resolve(__dirname, './src/config'),
+      config: path.resolve(__dirname, './src/request'),
     }
   },
   devServer: {

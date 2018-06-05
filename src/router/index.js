@@ -1,15 +1,31 @@
-import Vue from 'vue'
-import Router from 'vue-router'
-import HelloWorld from '@/components/HelloWorld'
+import Vue from 'vue';
+import Router from 'vue-router';
+import {Indicator} from 'mint-ui';
 
-Vue.use(Router)
+const HelloWorld = resolve => require(['@/components/HelloWorld'],resolve);
+const PDF = resolve => require(['@/pages/showPDF.vue'],resolve);
 
-export default new Router({
+Vue.use(Router);
+
+const router =  new Router({
+  mode: "history",
   routes: [
     {
       path: '/',
       name: 'HelloWorld',
-      component: HelloWorld
+      component: HelloWorld,
+      meta: {
+        keepAlive: true
+      }
+    },
+    {
+      path:'/PDF',
+      component:PDF
     }
   ]
-})
+});
+router.beforeEach((to, from, next) => {
+  Indicator.close();
+  next();
+});
+export default router;

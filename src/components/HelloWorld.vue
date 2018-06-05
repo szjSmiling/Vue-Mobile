@@ -4,10 +4,10 @@
     <h2>测试mint-ui的使用</h2>
     <ul>
       <li><mt-button @click.native="handleClick">按钮</mt-button></li>
+      <li @click="PDFLoad">PDF文件的预览</li>
     </ul>
   </div>
 </template>
-
 <script>
 import {Toast} from 'mint-ui'
 export default {
@@ -18,6 +18,9 @@ export default {
     }
   },
   methods: {
+    PDFLoad(){
+      this.$router.push('/PDF');
+    },
     handleClick: function() {
       Toast('Hello world!')
     }

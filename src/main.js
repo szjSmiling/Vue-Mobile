@@ -13,6 +13,7 @@ import Vue from 'vue';
 import App from './App';
 import axios from "axios";
 import router from './router';
+import { store } from "./vuex";
 import resource from "vue-resource";
 import { AxiosConfig } from "./models/utils/AxiosConfig";
 
@@ -33,6 +34,5 @@ AxiosConfig.init();
 new Vue({
   el: '#app',
   router,
-  components: { App },
-  template: '<App/>'
-})
+  store,
+});
