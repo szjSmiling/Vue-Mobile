@@ -9,7 +9,7 @@
   </div>
 </template>
 <script>
-import pdf from '@/pages/pdf.vue';
+import pdf from '@/components/pdf.vue';
 export default {
   components: {
 		pdf,
