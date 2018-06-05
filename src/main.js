@@ -31,8 +31,21 @@ Vue.prototype.$axios = axios;
 AxiosConfig.init();
 
 /* eslint-disable no-new */
-new Vue({
+var vm = new Vue({
   el: '#app',
   router,
   store,
+  methods:{
+    onLoadFinish() {
+      try {
+        window.heg && window.heg.onViewShow();
+      } catch (e) {
+        // statements
+      }
+    },
+  },
+  mounted() {
+    this.onLoadFinish();
+  },
+  render: h => h(App)
 });

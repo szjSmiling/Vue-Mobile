@@ -24,7 +24,11 @@ export default {
       this.$router.push('/PDF');
     },
     handleClick: function() {
-      Toast('Hello world!')
+      Toast({
+        message:'Hello world!',
+        position:'bottom',
+        duration:1000
+      })
     }
   }
 }

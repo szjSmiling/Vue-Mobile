@@ -20,15 +20,12 @@ export default {
     }
 	}, 
 	created() {  
-  	let pdfUrl = window.location.href
-    if(pdfUrl.indexOf('/agreement') == -1){
-      this.PDFShow = false;
-    }else{
-      this.PDFShow = true;
-    }
+  	
 	}, 
   methods:{
-
+    handleClick(){
+      this.PDFShow = !this.PDFShow;
+    }
   }
 }
 </script>
