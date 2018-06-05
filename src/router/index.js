@@ -2,7 +2,7 @@ import Vue from 'vue';
 import Router from 'vue-router';
 import {Indicator} from 'mint-ui';
 
-const HelloWorld = resolve => require(['@/components/HelloWorld'],resolve);
+const HelloWorld = resolve => require(['@/pages/HelloWorld'],resolve);
 const PDF = resolve => require(['@/pages/showPDF.vue'],resolve);
 
 Vue.use(Router);

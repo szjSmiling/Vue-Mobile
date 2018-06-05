@@ -1,5 +1,6 @@
 <template>
   <div class="hello">
+    <div><img :src="img" alt=""></div>
     <h1>{{ msg }}</h1>
     <h2>测试mint-ui的使用</h2>
     <ul>
@@ -14,6 +15,7 @@ export default {
   name: 'HelloWorld',
   data () {
     return {
+      img:require('../assets/logo.png'),
       msg: 'Welcome to Your Vue.js App'
     }
   },

@@ -29,7 +29,7 @@ export default {
 }
 
 @font-face {
-    font-family: 'WebRupee'; // src: url('/dist/fonts/WebRupee.V2.0.ttf');
+    font-family: 'WebRupee';
     src: url('./assets/font/WebRupee.V2.0.ttf');
 }
 
