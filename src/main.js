@@ -16,6 +16,7 @@ import router from './router';
 import { store } from "./vuex";
 import resource from "vue-resource";
 import { AxiosConfig } from "./models/utils/AxiosConfig";
+import './assets/iconfont/iconfont.css';
 
 Vue.use(resource);
 Vue.component(DatetimePicker.name, DatetimePicker);

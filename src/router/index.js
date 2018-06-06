@@ -8,7 +8,7 @@ const PDF = resolve => require(['@/pages/showPDF.vue'],resolve);
 Vue.use(Router);
 
 const router =  new Router({
-  mode: "history",
+  mode: "history",//如果不更改设置,增加mode;vue会默认使用hash模式,该模式下会将路径格式化为#开头
   routes: [
     {
       path: '/',

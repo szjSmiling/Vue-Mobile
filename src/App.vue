@@ -8,103 +8,101 @@
 </template>
 <script>
 export default {
-    name: 'app',
-    data() {
-        return {
-
-        }
-    }
-}
+  name: "app",
+  data() {
+    return {};
+  }
+};
 </script>
 <style lang="less">
-@import './assets/css/common.css';
-@import './assets/css/reset.css';
+@import "./assets/css/common.css";
+@import "./assets/css/reset.css";
 
 #app {
-    font-family: Helvetica, Arial, sans-serif, 'Avenir';
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    text-align: center;
-    color: #2c3e50;
-    height: inherit;
+  font-family: Helvetica, Arial, sans-serif, "Avenir";
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+  height: inherit;
 }
 
 @font-face {
-    font-family: 'WebRupee';
-    src: url('./assets/font/WebRupee.V2.0.ttf');
+  font-family: "WebRupee";
+  src: url("./assets/font/WebRupee.V2.0.ttf");
 }
 
-#app>div {
-    height: 100%;
+#app > div {
+  height: 100%;
 }
 
 .rs {
-    font-family: 'WebRupee';
-    font-weight: normal;
-    margin-right: 0.2em;
+  font-family: "WebRupee";
+  font-weight: normal;
+  margin-right: 0.2em;
 }
 
 h1,
 h2 {
-    font-weight: normal;
+  font-weight: normal;
 }
 
 ul {
-    list-style-type: none;
-    padding: 0;
+  list-style-type: none;
+  padding: 0;
 }
 
 input,
 select {
-    border: none;
-    border-radius: 4px;
+  border: none;
+  border-radius: 4px;
 }
 
 .mt-range-progress {
-    background-color: #ffad3d !important;
+  background-color: #ffad3d !important;
 }
 
 .mint-indicator-text {
-    color: #ffad3d!important;
-    font-size: 0.6rem!important;
-    line-height: 1rem;
+  color: #ffad3d !important;
+  font-size: 0.6rem !important;
+  line-height: 1rem;
 }
 
 .mint-popup {
-    border-radius: 0.4rem;
+  border-radius: 0.4rem;
 }
 
 .mint-indicator {
-    position: fixed;
-    z-index: 20;
-    -webkit-transition: opacity .2s linear;
-    transition: opacity .2s linear;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, .1)!important;
+  position: fixed;
+  z-index: 20;
+  -webkit-transition: opacity 0.2s linear;
+  transition: opacity 0.2s linear;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.1) !important;
 }
 
-.mint-radio-input:checked+.mint-radio-core {
-    background-color: #fff!important;
-    border-color: #ccc!important;
+.mint-radio-input:checked + .mint-radio-core {
+  background-color: #fff !important;
+  border-color: #ccc !important;
 }
 
-.mint-radio-input:checked+.mint-radio-core::after {
-    background-color: #ffa033!important;
+.mint-radio-input:checked + .mint-radio-core::after {
+  background-color: #ffa033 !important;
 }
 
 .mint-radiolist,
 .mint-cell-wrapper,
 .mint-radiolist-label {
-    padding: 0!important;
+  padding: 0 !important;
 }
 
 .mint-radio-label {
-    font-size: 0.52rem;
+  font-size: 0.52rem;
 }
 
 .swiper-slide {
-    width: 100%!important;
+  width: 100% !important;
 }
 </style>

@@ -1,11 +1,16 @@
 <template>
+<div id="file">
+  <mt-button class="close" @click="closePDF" size="small" type="primary">
+    <i class="iconfont icon-close"></i>
+  </mt-button>
   <div id="pdf" ref="PDF" >
-      <canvas id="the-canvas" style="width:100%;height:90%;"></canvas>  
+      <canvas id="the-canvas" style="width:100%;height:92.5%;"></canvas>  
       <div class="foot" v-if='pdfDoc'>  
         <button class='left' v-if="pageNum>=1" @click="onPrevPage">上一页</button>  
         <button class='right' v-if="pageNum<=pdfDoc.numPages" @click="onNextPage">下一页</button>  
       </div>  
   </div>
+</div>
 </template>
 <script>
 import PDFJS from 'pdfjs-dist';
@@ -23,6 +28,9 @@ export default {
     this.showPDF('../../static/termsfile/Happyeasygo-Inland.pdf');
   },
   methods: {  
+    closePDF(){
+      this.$emit('close',false);
+    },
     showPDF (url) {  
       let _this = this  
       PDFJS.getDocument(url).then(function (pdf) {  
@@ -82,28 +90,38 @@ export default {
 }
 </script>
 <style lang="less" scoped>
-#pdf{
-	padding: 2rem 0;
-	background-color: rgba(0,0,0,0.75);  
-  position:fixed;  
-  width: 100%;  
-  height: 100%;  
-  top: 0;  
-  left: 0;  
-  text-align: center;
-	.the-canvas {
-    display: block;
-	}
-	.foot {  
-		position: fixed;  
-		transform: translate(-50%,0);  
-    left: 50%;
-    bottom:0%;
-    button{
-      color:#fff;
-      border:1px solid #fff;
-      background:rgba(0,0,0,0.75);
+#file{
+  position: relative;
+  .close{
+    position: absolute;
+    z-index: 2;
+    height:30px;
+    right:0;
+    top: 0;
+  }
+  #pdf{
+    padding: 1.5rem 0;
+    background-color: rgba(0,0,0,0.75);  
+    position:fixed;  
+    width: 100%;  
+    height: 100%;  
+    top: 0;  
+    left: 0;  
+    text-align: center;
+    .the-canvas {
+      display: block;
     }
-	}  
+    .foot {  
+      position: fixed;  
+      transform: translate(-50%,0);  
+      left: 50%;
+      bottom:0%;
+      button{
+        color:#fff;
+        border:1px solid #fff;
+        background:rgba(0,0,0,0.75);
+      }
+    }  
+  }
 }
 </style>
