@@ -11,12 +11,13 @@ import {
 } from "mint-ui";
 import Vue from 'vue';
 import App from './App';
-import axios from "axios";
+import axios from "axios";// 不能使用Vue.use(axios),要使用Vue.prototype.$axios = axios;
+
 import router from './router';
 import { store } from "./vuex";
-import resource from "vue-resource";
+import resource from "vue-resource";// 可以使用$http
 import { AxiosConfig } from "./models/utils/AxiosConfig";
-import './assets/iconfont/iconfont.css';
+import './assets/iconfont/iconfont.css';//引入字体图标
 
 Vue.use(resource);
 Vue.component(DatetimePicker.name, DatetimePicker);

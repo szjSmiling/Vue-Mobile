@@ -1,12 +1,12 @@
 <template>
 	<div class="header flex space-between" v-if="showHeader">
-		<div class="head-ico flex align-items-center" @click="navigate">
+		<div class="head-ico flex align-items-center" @click="goback">
 			<slot name="left"></slot>
 		</div>
 		<div class="head-title flex align-items-center">
 			<slot name="title"></slot>
 		</div>
-		<div class="user flex align-items-center content-end">
+		<div class="user head-ico flex align-items-center content-end">
 			<slot name="right"></slot>
 		</div>
 	</div>
@@ -15,42 +15,17 @@
 export default {
   data() {
     return {
-      showHeader: false,
-      navigate: null
+      showHeader: true
     };
-  },
-  props: {
-    operate: {
-      type: [Function, Object],
-      default: null
-    }
   },
   methods: {
     goback() {
-      try {
-        window.heg.nativeBack();
-      } catch (e) {}
       this.$router.go(-1);
     }
-  },
-  created() {
-    // try {
-    //   let device =
-    //     typeof window.heg.getNativeSource() === "string"
-    //       ? JSON.parse(window.heg.getNativeSource())
-    //       : window.heg.getNativeSource();
-    //   this.showHeader = Number(device.deviceType) == 1 && !device.deviceNative;
-    // } catch (e) {
-    //   this.showHeader = true;
-    // }
-    this.navigate = this.operate || this.goback;
   }
 };
 </script>
 <style lang='less' scoped>
-.ios {
-  display: none;
-}
 .header {
   width: 100%;
   height: 2.04rem;
@@ -60,21 +35,19 @@ export default {
   z-index: 10;
   background: #0b9d78;
   .title {
-    // line-height: 2.04rem;
     font-size: 0.768rem;
     color: #fff;
   }
   .head-ico {
     i {
-      padding: 0 0.64rem; // display: block;
-      // height: 100%;
+      padding: 0 0.64rem;
       color: #fff;
       display: block;
+      font-size: 1.2rem;
     }
   }
-
   .user {
-    line-height: 2.04rem; // flex: 0 0 1.2rem;
+    line-height: 2.04rem;
     i {
       padding: 0 0.64rem;
 
@@ -92,6 +65,7 @@ export default {
     height: 2.04rem;
     line-height: 2.04rem;
     color: #fff;
+    margin-left:-1rem;
   }
 }
 </style>

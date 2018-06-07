@@ -4,7 +4,7 @@
     <i class="iconfont icon-close"></i>
   </mt-button>
   <div id="pdf" ref="PDF" >
-      <canvas id="the-canvas" style="width:100%;height:92.5%;"></canvas>  
+      <canvas id="the-canvas" style="width:100%;height:93.2%;"></canvas>  
       <div class="foot" v-if='pdfDoc'>  
         <button class='left' v-if="pageNum>=1" @click="onPrevPage">上一页</button>  
         <button class='right' v-if="pageNum<=pdfDoc.numPages" @click="onNextPage">下一页</button>  
