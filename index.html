@@ -1,15 +1,38 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, minimal-ui">
-    <meta name="format-detection" content="telephone=no">
-    <meta name="Description" content="Find the best deals on flight tickets, hotel and travel packages only at Happyeasygo.com. Lowest Airfares with Exciting offers on bookings in India. Book Now!">
-    <meta name="keywords" content=" flight ticket booking, flight booking, Hotel booking, Travel packages, international travel deals, travel offers, online Travel Company, Online Travel Agency, Best Travel Deals, Cheap Air ticket booking.">
-    <link href="/static/favicon2.ico" rel="icon" type="image/x-icon">
-    <title>szjSmiling - a Sunny boy</title>
-  </head>
-  <body>
-    <div id="app"></div>
-    <!-- built files will be auto injected -->
-  </body>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, minimal-ui">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="Description" content="Find the best deals on flight tickets, hotel and travel packages only at Happyeasygo.com. Lowest Airfares with Exciting offers on bookings in India. Book Now!">
+  <meta name="keywords" content=" flight ticket booking, flight booking, Hotel booking, Travel packages, international travel deals, travel offers, online Travel Company, Online Travel Agency, Best Travel Deals, Cheap Air ticket booking.">
+  <link href="/static/favicon2.ico" rel="icon" type="image/x-icon">
+  <title>szjSmiling - a Sunny boy</title>
+</head>
+
+<body>
+  <div id="app"></div>
+  <!-- built files will be auto injected -->
+</body>
+<script>
+  var fun = function (doc, win) {
+    var docEl = doc.documentElement,
+      resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+      recalc = function () {
+        var clientWidth = docEl.clientWidth;
+        if (!clientWidth) return;
+        if (clientWidth >= 640) {
+          docEl.style.fontSize = '170px';
+        } else {
+          docEl.style.fontSize = 100 * (clientWidth / 375) + 'px';
+        }
+      };
+    if (!doc.addEventListener) return;
+    win.addEventListener(resizeEvt, recalc, false);
+    doc.addEventListener('DOMContentLoaded', recalc, false);
+  }
+  fun(document, window);
+
+</script>
+
 </html>
