@@ -18,12 +18,10 @@
           src="../assets/images/dog.gif" 
           type="primary" 
           size="large" 
-          height="20" width="20" s
-          lot="icon">
+          height="20" width="20" slot="icon">
           PDF文件的预览
         </mt-button>
       </li>
-      <li></li>
     </ul>
     <mt-swipe class="mint-swipe" :auto="4000">
      <mt-swipe-item v-if="bannerList?bannerList:false" v-for="(item,index) in bannerList" :key="index">
@@ -89,13 +87,13 @@ export default {
     handleClick: function() {
       Toast({
         message: "Hello world!",
-        position: "top",
+        position: "center",
         duration: 1000
       });
     },
     closeRow(id) {
-      this.list = this.list.filter(val => {
-        return val.id != id;
+      this.textList = this.textList.filter(val => {
+        return val.id != id ;
       });
     }
   }
@@ -104,33 +102,39 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="less">
 #hello {
-  padding-top: 2rem;
-  h2 {
-    padding: 0.5rem 0;
+  padding:0.5rem 0 0.58rem;
+  img{
+    vertical-top: 0;
   }
-  ul,
-  li {
+  h2 {
+    padding: 0.1rem 0;
+  }
+  ul,li {
     list-style-type: none;
   }
   .btnGroup {
-    padding: 0 0 0.5rem;
+    padding: 0 0 0.1rem;
+    display:flex;
+    justify-content: space-around;
     li {
-      display: inline-block;
       margin: 0 10px;
+      .mint-button--normal{
+        display: block;
+      }
     }
   }
   a {
     color: #42b983;
   }
   .mint-swipe {
-    height:7rem;
-    img{
+    height:2.2rem;
+    a,img{
       width: 100%;
       height:100%;
     }
   }
   .content {
-    padding: 1rem 0.68rem;
+    padding: 0 0.15rem 0.2rem;
     background: #eee;
     border-radius: 3px;
     .cont-ol {
@@ -138,13 +142,13 @@ export default {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        padding: 0.3rem 0;
-        font-size: 0.86rem;
+        padding: 0.1rem 0;
+        font-size: 0.16rem;
         font-family: Arial, Helvetica, sans-serif;
         border-bottom: 1px solid #ddd;
         .close {
           height: auto;
-          padding: 0 0.3rem;
+          padding: 0.05rem 0.15rem;
         }
       }
     }

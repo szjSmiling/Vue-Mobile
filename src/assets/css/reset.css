@@ -20,9 +20,9 @@ time, mark, audio, video {
     -webkit-tap-highlight-color:transparent;
 }
 body {
-    line-height:1;
+    line-height:0;
 }
-
+button{display:block;}
 :focus {
 	outline: 1;
 }
@@ -35,7 +35,6 @@ footer,header,hgroup,menu,nav,section,summary {
 nav ul {
     list-style:none;
 }
-
 blockquote, q {
     quotes:none;
 }
@@ -91,6 +90,6 @@ hr {
     padding:0;
 }
 
-input, select {
+img, input, select {
     vertical-align:middle;
 }

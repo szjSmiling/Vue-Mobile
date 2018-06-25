@@ -12,7 +12,7 @@ import {
 import Vue from 'vue';
 import App from './App';
 import axios from "axios";// 不能使用Vue.use(axios),要使用Vue.prototype.$axios = axios;
-
+import { FontUtil } from "./models/utils/FontUtil.js";// 配置基础字体大小
 import router from './router';
 import { store } from "./vuex";
 import resource from "vue-resource";// 可以使用$http
@@ -31,7 +31,7 @@ Vue.config.productionTip = false
 
 Vue.prototype.$axios = axios;
 AxiosConfig.init();
-
+FontUtil.init();
 /* eslint-disable no-new */
 var vm = new Vue({
   el: '#app',

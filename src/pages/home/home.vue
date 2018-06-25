@@ -29,6 +29,6 @@ export default {
 </script>
 <style lang="less" scoped>
 #home {
-  padding-top:2rem;
+  padding-top:0.5rem;
 }
 </style>

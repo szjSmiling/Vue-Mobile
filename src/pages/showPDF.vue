@@ -4,7 +4,7 @@
       <head-top id="header">
         <i slot="left" class="iconfont icon-back"></i>
         <span slot="title">szjSmiling</span>
-        <i slot="right" class="iconfont icon-file" ></i>
+        <i slot="right" class="iconfont icon-file" @click="$router.push('/activity')"></i>
       </head-top>
       <div><img src="../assets/logo.png"></div>
       <mt-button @click.native="handleClick" type="danger">
@@ -55,7 +55,7 @@ export default {
 <style lang="less" scoped>
 #PDF {
   .pdfBtn{
-    padding-top:2rem;
+    padding-top:0.5rem;
   }
 }
 </style>

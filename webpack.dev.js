@@ -104,7 +104,7 @@ module.exports = {
     hot: true,
     // inline: true,
     host: 'app.happyeasygo.com',
-    port: 8080,
+    port: 8085,
     compress: true,
     // watchContentBase: false,
     proxy: {

@@ -28,44 +28,45 @@ export default {
 <style lang='less' scoped>
 .header {
   width: 100%;
-  height: 2.04rem;
-  line-height: 2.04rem;
+  height: 0.5rem;
+  line-height: 0.5rem;
   position: fixed;
   top: 0;
   z-index: 10;
   background: #0b9d78;
   .title {
-    font-size: 0.768rem;
+    font-size: 0.25rem;
     color: #fff;
   }
   .head-ico {
     i {
-      padding: 0 0.64rem;
+      padding: 0 0.2rem;
       color: #fff;
       display: block;
-      font-size: 1.2rem;
+      font-size: 0.2rem;
+      line-height: 0.5rem;
     }
   }
   .user {
-    line-height: 2.04rem;
+    line-height:0.5rem;
     i {
-      padding: 0 0.64rem;
+      padding: 0 0.2rem;
 
       color: #fff;
     }
     img {
-      padding: 0.64rem;
+      padding: 0.2rem;
       width: 0.8rem;
       flex: 0 0 0.5rem;
       display: block;
     }
   }
   .head-title {
-    font-size: 1.02rem;
-    height: 2.04rem;
-    line-height: 2.04rem;
+    font-size: 0.25rem;
+    height: 0.5rem;
+    line-height: 0.5rem;
     color: #fff;
-    margin-left:-1rem;
+    margin-left: -0.5rem;
   }
 }
 </style>

@@ -44,7 +44,7 @@ export default {
   src: url("./assets/font/WebRupee.V2.0.ttf");
 }
 
-#app > div {
+#app,#app > div {
   height: 100%;
 }
 
@@ -57,6 +57,7 @@ export default {
 h1,
 h2 {
   font-weight: normal;
+  font-size:0.2rem;
 }
 
 ul {
@@ -73,11 +74,13 @@ select {
 .mt-range-progress {
   background-color: #ffad3d !important;
 }
-
+.mint-indicator-wrapper{
+  line-height: 0;
+}
 .mint-indicator-text {
   color: #ffad3d !important;
-  font-size: 0.6rem !important;
-  line-height: 1rem;
+  font-size: 0.16rem !important;
+  line-height:0.2rem;
 }
 
 .mint-popup {
@@ -111,7 +114,7 @@ select {
 }
 
 .mint-radio-label {
-  font-size: 0.52rem;
+  font-size: 0.16rem;
 }
 
 .swiper-slide {

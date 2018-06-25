@@ -2,8 +2,11 @@ import Vue from 'vue';
 import Router from 'vue-router';
 import {Indicator} from 'mint-ui';
 
-const HelloWorld = resolve => require(['@/pages/HelloWorld.vue'],resolve);
-const PDF = resolve => require(['@/pages/showPDF.vue'],resolve);
+const HelloWorld = resolve => require(['Pages/HelloWorld.vue'],resolve);
+const PDF = resolve => require(['Pages/showPDF.vue'],resolve);
+const activity = resolve => require(['Pages/activity/activity.vue'],resolve);
+const actDetails = resolve => require(['Pages/activity/actDetails.vue'],resolve);
+const actPrizes = resolve => require(['Pages/activity/actPrizes.vue'],resolve);
 
 Vue.use(Router);
 
@@ -14,6 +17,7 @@ const router =  new Router({
       path: '/',
       name: 'HelloWorld',
       component: HelloWorld,
+      // redirect: "/HelloWorld",
       meta: {
         keepAlive: true
       }
@@ -21,7 +25,20 @@ const router =  new Router({
     {
       path:'/PDF',
       component:PDF
-    }
+    },
+    {
+      path:'/activity',
+      component:activity,
+      children:[
+        {
+          path:'actDetails',
+          component:actDetails
+        },{
+          path:'actPrizes',
+          component:actPrizes
+        },
+      ]
+    },
   ]
 });
 router.beforeEach((to, from, next) => {

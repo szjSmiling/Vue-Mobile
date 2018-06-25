@@ -23,22 +23,22 @@ export default {
 <style lang="less" scoped>
 #footer {
     width: 100%;
-    height: 8%;
+    height: 0.58rem;
     display: table;
-    position: absolute;
+    position: fixed;
     bottom: 0;
     background-color: #0b9d78;
   .foot-content{
     display: table-cell;
     vertical-align: middle;
     p {
-      font-size: 0.8rem;
+      font-size: 0.14rem;
       color: #fff;
-      margin: 0.2rem 0;
+      margin: 0.1rem 0;
       span {
         border-right: 1px solid #fff;
         display: inline-block;
-        padding: 0 0.2rem;
+        padding: 0 0.1rem;
       }
       span:nth-child(4) {
         border-right: none;
