@@ -18,6 +18,7 @@ import { store } from "./vuex";
 import resource from "vue-resource";// 可以使用$http
 import { AxiosConfig } from "./models/utils/AxiosConfig";
 import './assets/iconfont/iconfont.css';//引入字体图标
+import Clipboard from 'clipboard';// 拷贝复制
 
 Vue.use(resource);
 Vue.component(DatetimePicker.name, DatetimePicker);
@@ -27,8 +28,9 @@ Vue.component("mt-range", Range);
 Vue.component("mt-popup", Popup);
 Vue.component("mt-radio", Radio);
 Vue.component(Field.name, Field);
-Vue.config.productionTip = false
+Vue.config.productionTip = false;
 
+Vue.prototype.$clipboard = Clipboard;
 Vue.prototype.$axios = axios;
 AxiosConfig.init();
 FontUtil.init();

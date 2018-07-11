@@ -11,30 +11,50 @@
         <i class="iconfont icon-wenjian"></i>
         跳转到PDF
       </mt-button>
-      <foot-end></foot-end>
+      <!-- <foot-end></foot-end> -->
     </div>
     <pdf v-show="PDFShow" @close="closeBox"></pdf>
+    <pagination v-if="orderList.length != 0" :pagination="pagination" @currentPageData="currentPageData"></pagination>
   </div>
 </template>
 <script>
 import headTop from "@/components/head/header.vue";
 import footEnd from "@/components/foot/footer.vue";
 import pdf from "@/components/pdf.vue";
+import pagination from "@/components/pagination/pagination.vue";
 import { Indicator,Toast } from "mint-ui";
 export default {
   components: {
     headTop,
     footEnd,
-    pdf
+    pdf,
+    pagination,
   },
   data() {
     return {
+      orderList:[],
+      pagination:{},
       PDFShow: false,
+      orderObj:{
+        status:'To be paid',
+        pageNum:1,
+        pageSize:8,
+      },
       loadType: ["fading-circle", "snake", "double-bounce", "triple-bounce"]
     };
   },
   created() {},
+  mounted() {
+    this.pages();
+  },
   methods: {
+    pages(){
+      this.orderList = [{id:1}];
+      this.pagination = Object.assign({}, this.pagination, {//   添加多个属性方法
+        totalSize: 15,
+        pageSize:2
+      });
+    },
     handleClick() {
       let type = Math.floor(Math.random()*4);
       Indicator.open({
@@ -48,12 +68,17 @@ export default {
     },
     closeBox(data) {
       this.PDFShow = data;
-    }
+    },
+    currentPageData(data){
+      this.orderObj.pageNum = data;
+      console.log(data);
+    },
   }
 };
 </script>
 <style lang="less" scoped>
 #PDF {
+  background: #eee;
   .pdfBtn{
     padding-top:0.5rem;
   }

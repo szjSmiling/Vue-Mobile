@@ -11,7 +11,11 @@
       <h2>测试mint-ui的使用</h2>
     </div>
     <ul class="btnGroup">
-      <li><mt-button @click.native="handleClick" type="primary">按钮</mt-button></li>
+      <li style="position:relative;">
+        <input type="text" id="success_form_input" readonly="readonly" v-model="link" style="position:absolute;top:0;left:0;opacity:0;" />
+        <mt-button type="primary" @click="handleClick">Hello按钮</mt-button>
+        <button class="copy" ref="copy" id="copyBtn" @click="copyClick" data-clipboard-target="#success_form_input">复制粘贴</button>
+      </li>
       <li @click="PDFLoad">
         <mt-button>
           <img 
@@ -58,6 +62,7 @@ export default {
   },
   data() {
     return {
+      link:'',
       img: require("../assets/logo.png"),
       msg: "Welcome to Your Vue.js App",
       bannerList:[
@@ -73,6 +78,12 @@ export default {
       ]
     };
   },
+  mounted() {
+    this.link = location.href;
+    // this.copyBtn = new this.$clipboard('#copyBtn',{
+    //   container: document.getElementsByClassName('.mint-button-text')
+    // });
+  },
   methods: {
     PDFLoad() {
       Indicator.open({
@@ -84,11 +95,28 @@ export default {
         this.$router.push("/PDF");
       }, 1000);
     },
-    handleClick: function() {
+    handleClick() {
       Toast({
         message: "Hello world!",
-        position: "center",
+        position: "top",
         duration: 1000
+      });
+    },
+    copyClick(){
+      let copyBtn = new this.$clipboard('#copyBtn');
+      copyBtn.on('success', function(e) {
+        console.log(e);
+        Toast({
+          message: "复制成功！",
+          duration: 1200
+        });
+        e.clearSelection();
+      });
+      copyBtn.on('error', function(e) {
+        Toast({
+          message: "复制失败，请手动选择复制！",
+          duration: 1200
+        });
       });
     },
     closeRow(id) {
@@ -116,10 +144,19 @@ export default {
     padding: 0 0 0.1rem;
     display:flex;
     justify-content: space-around;
+    li:first-child{display:flex;}
     li {
-      margin: 0 10px;
       .mint-button--normal{
         display: block;
+        padding:0 10px;
+      }
+      input{opacity:0;width:1px;height:41px;}
+      .copy{
+        height: 41px;
+        border-radius: 4px;
+        background: #ef4f4f;
+        color:#fff;
+        margin-left:0.1rem;
       }
     }
   }
@@ -134,7 +171,7 @@ export default {
     }
   }
   .content {
-    padding: 0 0.15rem 0.2rem;
+    padding: 0 0.15rem 1rem;
     background: #eee;
     border-radius: 3px;
     .cont-ol {
