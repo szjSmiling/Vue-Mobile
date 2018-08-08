@@ -120,4 +120,14 @@ select {
 .swiper-slide {
   width: 100% !important;
 }
+
+.mint-loadmore{
+  .mint-loadmore-top{
+    font-size:0.2rem;
+  }
+  .mint-loadmore-bottom{
+    font-size:0.2rem;
+  }
+}
+
 </style>

@@ -2,8 +2,8 @@
 	<div id="footer">
     <div class="foot-content">
       <p>
-        <span @click="$router.push('/')">T &amp; C</span>
-        <span @click="$router.push('/')">Privacy</span>
+        <span @click="$router.push('/shoplist')">shoplist1</span>
+        <span @click="$router.push('/shoplist2')">shoplist2</span>
         <span @click="$router.push('/')">About Us</span>
         <span @click="$router.push('/')">Contact Us</span>
       </p>

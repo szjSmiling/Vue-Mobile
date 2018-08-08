@@ -4,9 +4,13 @@ import {Indicator} from 'mint-ui';
 
 const HelloWorld = resolve => require(['Pages/HelloWorld.vue'],resolve);
 const PDF = resolve => require(['Pages/showPDF.vue'],resolve);
+
 const activity = resolve => require(['Pages/activity/activity.vue'],resolve);
 const actDetails = resolve => require(['Pages/activity/actDetails.vue'],resolve);
 const actPrizes = resolve => require(['Pages/activity/actPrizes.vue'],resolve);
+
+const shoplist = resolve => require(['Pages/shop/shoplist.vue'],resolve);
+const shoplist2 = resolve => require(['Pages/shop/shoplist2.vue'],resolve);
 
 Vue.use(Router);
 
@@ -38,6 +42,14 @@ const router =  new Router({
           component:actPrizes
         },
       ]
+    },
+    {
+      path:"/shoplist",
+      component:shoplist
+    },
+    {
+      path:"/shoplist2",
+      component:shoplist2
     },
   ]
 });
