@@ -22,7 +22,20 @@ import { store } from "./vuex";
 import resource from "vue-resource";// 可以使用$http
 import { AxiosConfig } from "./models/utils/AxiosConfig";
 import './assets/iconfont/iconfont.css';//引入字体图标
+import './assets/iconfont/iconfont1.css';//引入字体图标
 import Clipboard from 'clipboard';// 拷贝复制
+import 'font-awesome/css/font-awesome.css';
+// import fontawesome from '@fortawesome/fontawesome';
+
+// import solid from '@fortawesome/fontawesome-free-solid'
+// import regular from '@fortawesome/fontawesome-free-regular'
+// import brands from '@fortawesome/fontawesome-free-brands'
+
+
+// fontawesome.library.add(solid)
+// fontawesome.library.add(regular)
+// fontawesome.library.add(brands)
+// Vue.component('font-awesome-icon', fontawesome)
 
 Vue.use(resource);
 //定制化

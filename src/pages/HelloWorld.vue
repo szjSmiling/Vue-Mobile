@@ -5,10 +5,20 @@
       <span slot="title">szjSmiling</span>
       <i slot="right" class="iconfont icon-home" ></i>
     </head-top>
-    <div>
+    <div style="font-size:18px;">
       <img :src="img" alt="">
       <h1>{{ msg }}</h1>
       <h2>测试mint-ui的使用</h2>
+      <i class="iconfont icon-mobile"></i>
+      <i class="iconfont icon-credit"></i>
+      <i class="iconfont icon-pay7zhifu"></i>
+      <i class="iconfont icon-creditcardalt"></i>
+      <i class="iconfont icon-bank"></i>
+      <i class="iconfont icon-cc-paypal"></i>
+    </div>
+    <div style="font-size:18px;">
+      <i class="fa fa-university"></i>
+      <span style="font-size:18px;">Font Awesome 5icon图标库的使用</span>
     </div>
     <ul class="btnGroup">
       <li style="position:relative;">
@@ -128,6 +138,8 @@ export default {
 };
 </script>
 <!-- Add "scoped" attribute to limit CSS to this component only -->
+<style scoped>
+</style>
 <style scoped lang="less">
 #hello {
   padding:0.5rem 0 0.58rem;
