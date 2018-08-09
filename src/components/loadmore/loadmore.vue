@@ -25,11 +25,9 @@
   </div>
 </template>
 <script>
-import { Loadmore, Spinner } from "mint-ui";
 export default {
   components: {
-    mtLoadmore: Loadmore,
-    mtSpinner:Spinner
+    
   },
   data() {
     return {
@@ -54,7 +52,7 @@ export default {
     // }
     setTimeout(() => {
       //页面挂载完毕 模拟数据请求 这里为了方便使用一次性定时器
-      this.list = 12;
+      this.list = 11;
     }, 1500);
   },
   methods: {
@@ -69,7 +67,7 @@ export default {
         //上拉加载更多 模拟数据请求这里为了方便使用一次性定时器
         if (this.pageNum <= 3) {
           //最多下拉三次
-          this.list += 12; //上拉加载 每次数值加12
+          this.list += 11; //上拉加载 每次数值加12
         } else {
           this.allLoaded = true; //模拟数据加载完毕 禁用上拉加载
         }
@@ -92,7 +90,7 @@ export default {
       this.pageNum = 1;
       this.allLoaded = false; //下拉刷新时解除上拉加载的禁用
       setTimeout(() => {
-        this.list = 12; //下拉刷新 数据初始化
+        this.list = 11; //下拉刷新 数据初始化
         this.handleTopChange("loadingEnd"); //数据加载完毕 修改状态码
         this.$refs.loadmore.onTopLoaded();
       }, 1500);

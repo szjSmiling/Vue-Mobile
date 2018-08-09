@@ -4,8 +4,8 @@
       <p>
         <span @click="$router.push('/shoplist')">shoplist1</span>
         <span @click="$router.push('/shoplist2')">shoplist2</span>
-        <span @click="$router.push('/')">About Us</span>
-        <span @click="$router.push('/')">Contact Us</span>
+        <span @click="$router.push('/shoplist3')">shoplist3</span>
+        <span @click="$router.push('/shoplist4')">shoplist4</span>
       </p>
       <p>2018-2019© szjSmiling.com. All Rights Reserved</p>
     </div>

@@ -7,7 +7,11 @@ import {
   Picker,
   Popup,
   Radio,
-  Range
+  Range,
+  Spinner,
+  Lazyload,
+  Loadmore,
+  InfiniteScroll,
 } from "mint-ui";
 import Vue from 'vue';
 import App from './App';
@@ -21,12 +25,23 @@ import './assets/iconfont/iconfont.css';//引入字体图标
 import Clipboard from 'clipboard';// 拷贝复制
 
 Vue.use(resource);
+//定制化
+// 在assets目录下的图片需要使用require()引入
+Vue.use(Lazyload, {
+  preLoad: 1.3,
+  error: require('./assets/images/error.gif'),
+  loading: require('./assets/images/dog.gif'),
+  attempt: 1
+});
+Vue.use(InfiniteScroll);
 Vue.component(DatetimePicker.name, DatetimePicker);
 Vue.component(Picker.name, Picker);
 Vue.component("mt-button", Button);
 Vue.component("mt-range", Range);
 Vue.component("mt-popup", Popup);
 Vue.component("mt-radio", Radio);
+Vue.component("mt-spinner", Spinner);
+Vue.component("mt-loadmore", Loadmore);
 Vue.component(Field.name, Field);
 Vue.config.productionTip = false;
 

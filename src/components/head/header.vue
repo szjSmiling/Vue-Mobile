@@ -3,7 +3,7 @@
 		<div class="head-ico flex align-items-center" @click="goback">
 			<slot name="left"></slot>
 		</div>
-		<div class="head-title flex align-items-center">
+		<div class="head-title flex align-items-center" @click="backTop">
 			<slot name="title"></slot>
 		</div>
 		<div class="user head-ico flex align-items-center content-end">
@@ -13,16 +13,49 @@
 </template>
 <script>
 export default {
+  props: {
+    operate: {
+      type: [Function, Object],
+      default: null
+    },
+    operate1: {
+      type: [Function, Object],
+      default: null
+    },
+  },
   data() {
     return {
-      showHeader: true
+      timer:null,
+      showHeader: true,
+      navigate: null,
+      navigate1: null,
     };
   },
   methods: {
     goback() {
       this.$router.go(-1);
+    },
+    backTop(){
+      let that = this;
+      cancelAnimationFrame(this.timer);
+      this.timer = requestAnimationFrame(function fn() {
+        let oTop =
+          document.body.scrollTop || document.documentElement.scrollTop;
+        let oHeight = document.getElementById("header").clientHeight;
+        if (oTop > 0) {
+          document.body.scrollTop = document.documentElement.scrollTop =
+            oTop - oHeight;
+          that.timer = requestAnimationFrame(fn);
+        } else {
+          cancelAnimationFrame(that.timer);
+        }
+      });
     }
-  }
+  },
+  created() {
+    this.navigate = this.operate || this.goback;
+    this.navigate1 = this.operate1 || this.backTop;
+  },
 };
 </script>
 <style lang='less' scoped>

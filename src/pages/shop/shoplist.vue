@@ -2,8 +2,8 @@
   <div id="shoplist">
     <head-top id="header">
       <i slot="left" class="iconfont icon-back"></i>
-      <span slot="title" @click="returnTop">Shopping</span>
-      <i slot="right" class="iconfont icon-cart" ></i>
+      <span slot="title">Shopping</span>
+      <i slot="right" class="iconfont icon-cart" @click="$router.push('/shopList5?id=1')"></i>
     </head-top>
     <load-more>
       <ul slot="loadmore">
@@ -34,23 +34,8 @@ export default {
     }
   },
   methods:{
-    returnTop(){
-      let that = this;
-      cancelAnimationFrame(this.timer);
-      this.timer = requestAnimationFrame(function fn(){
-        let oTop = document.body.scrollTop || document.documentElement.scrollTop;
-        if(oTop > 0){
-          document.body.scrollTop = document.documentElement.scrollTop = oTop - 50;
-          that.timer = requestAnimationFrame(fn);
-        }else{
-          cancelAnimationFrame(that.timer);
-        } 
-      });
-    }
-  },
-  created () {
     
-  }
+  },
 }
 </script>
 <style lang="less" scoped>

@@ -2,7 +2,7 @@
   <div id="shoplist2">
     <head-top id="header">
       <i slot="left" class="iconfont icon-back"></i>
-      <span slot="title" @click="returnTop">Shopping</span>
+      <span slot="title">Shopping</span>
       <i slot="right" class="iconfont icon-cart" ></i>
     </head-top>
     <div style="overflow:scroll;">
@@ -29,12 +29,9 @@
 </template>
 <script>
 import headTop from 'Components/head/header.vue';
-import { Loadmore, Spinner, Indicator } from "mint-ui";
 export default {
   components: {
     headTop,
-    mtLoadmore: Loadmore,
-    mtSpinner:Spinner
   },
   data(){
     return {
@@ -89,20 +86,6 @@ export default {
         }
       }
     },
-    returnTop(){
-      let that = this;
-      cancelAnimationFrame(this.timer);
-      this.timer = requestAnimationFrame(function fn(){
-        let oTop = document.body.scrollTop || document.documentElement.scrollTop;
-        let oHeight = document.getElementById("header").clientHeight;
-        if(oTop > 0){
-          document.body.scrollTop = document.documentElement.scrollTop = oTop - oHeight;
-          that.timer = requestAnimationFrame(fn);
-        }else{
-          cancelAnimationFrame(that.timer);
-        }
-      });
-    }
   },
   mounted() {
     // 页面首次进入,初始化数据
