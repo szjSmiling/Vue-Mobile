@@ -8,8 +8,10 @@ import {
   Popup,
   Radio,
   Range,
+  Badge,
   Spinner,
   Lazyload,
+  Checklist,
   Loadmore,
   InfiniteScroll,
 } from "mint-ui";
@@ -49,11 +51,13 @@ Vue.use(Lazyload, {
 Vue.use(InfiniteScroll);
 Vue.component(DatetimePicker.name, DatetimePicker);
 Vue.component(Picker.name, Picker);
+Vue.component(Badge.name, Badge);
 Vue.component("mt-button", Button);
 Vue.component("mt-range", Range);
 Vue.component("mt-popup", Popup);
 Vue.component("mt-radio", Radio);
 Vue.component("mt-spinner", Spinner);
+Vue.component("mt-checklist", Checklist);
 Vue.component("mt-loadmore", Loadmore);
 Vue.component(Field.name, Field);
 Vue.config.productionTip = false;

@@ -72,6 +72,7 @@ export default {
     color: #fff;
   }
   .head-ico {
+    width: 0.6rem;
     i {
       padding: 0 0.2rem;
       color: #fff;
@@ -81,6 +82,7 @@ export default {
     }
   }
   .user {
+    width: 0.6rem;
     line-height:0.5rem;
     i {
       padding: 0 0.2rem;

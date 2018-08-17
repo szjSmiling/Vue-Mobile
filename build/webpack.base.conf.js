@@ -31,6 +31,7 @@ module.exports = {
       'Components':resolve('src/components'),
       'Pages':resolve('src/pages'),
       'Models':resolve('src/models'),
+      'Vuex':resolve('src/vuex'),
     }
   },
   module: {

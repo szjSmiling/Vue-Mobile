@@ -70,7 +70,12 @@ select {
   border: none;
   border-radius: 4px;
 }
-
+.picker-toolbar{
+  font-size:0.2rem;
+  height:0.3rem;
+  line-height:0.3rem;
+  color: #f655f6;
+}
 .mt-range-progress {
   background-color: #ffad3d !important;
 }
@@ -84,7 +89,10 @@ select {
 }
 
 .mint-popup {
-  border-radius: 0.4rem;
+  border-radius: 0.04rem;
+  font-size: 0.18rem;
+  padding: 0.1rem;
+  border: 1px solid #eee;
 }
 
 .mint-indicator {

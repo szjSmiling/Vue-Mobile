@@ -3,6 +3,7 @@ import Router from 'vue-router';
 import {Indicator} from 'mint-ui';
 
 const HelloWorld = resolve => require(['Pages/HelloWorld.vue'],resolve);
+const back = resolve => require(['Pages/back.vue'],resolve);
 const PDF = resolve => require(['Pages/showPDF.vue'],resolve);
 
 const activity = resolve => require(['Pages/activity/activity.vue'],resolve);
@@ -15,6 +16,9 @@ const shoplist3 = resolve => require(['Pages/shop/shoplist3.vue'],resolve);
 const shoplist4 = resolve => require(['Pages/shop/shoplist4.vue'],resolve);
 const shoplist5 = resolve => require(['Pages/shop/shoplist5.vue'],resolve);
 const shoplist6 = resolve => require(['Pages/shop/shoplist6.vue'],resolve);
+
+const address = resolve => require(['Pages/address/address.vue'],resolve);
+const swiper = resolve => require(['Pages/swiper.vue'],resolve);
 
 Vue.use(Router);
 
@@ -30,9 +34,21 @@ const router =  new Router({
         keepAlive: true
       }
     },
+    { // url输入未定义的router时,跳转到指定的首页
+      path: "*",
+      component: HelloWorld
+    },
+    { // vue冲刷本身页面时,防止数据不更新,进行的空白页秒速跳转
+      path:'/backfresh',
+      component:back
+    },
     {
       path:'/PDF',
       component:PDF
+    },
+    {
+      path:'/swiper',
+      component:swiper
     },
     {
       path:'/activity',
@@ -70,6 +86,13 @@ const router =  new Router({
     {
       path:"/shoplist6",
       component:shoplist6
+    },
+    {
+      path:"/address",
+      component:address,
+      children:[
+        
+      ]
     },
   ]
 });

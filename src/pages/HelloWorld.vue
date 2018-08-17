@@ -3,7 +3,7 @@
     <head-top id="header">
       <i slot="left" class="iconfont icon-items"></i>
       <span slot="title">szjSmiling</span>
-      <i slot="right" class="iconfont icon-home" ></i>
+      <i slot="right" class="icon-right fa fa-map-marker" @click="goAddress"></i>
     </head-top>
     <div style="font-size:18px;">
       <img :src="img" alt="">
@@ -24,6 +24,7 @@
       <li style="position:relative;">
         <input type="text" id="success_form_input" readonly="readonly" v-model="link" style="position:absolute;top:0;left:0;opacity:0;" />
         <mt-button type="primary" @click="handleClick">Hello按钮</mt-button>
+        <mt-popup :modal="false" v-model="popupVisible" position="top" >Today is {{date}}.</mt-popup>
         <button class="copy" ref="copy" id="copyBtn" @click="copyClick" data-clipboard-target="#success_form_input">复制粘贴</button>
       </li>
       <li @click="PDFLoad">
@@ -73,6 +74,8 @@ export default {
   data() {
     return {
       link:'',
+      date:"Sunning",
+      popupVisible:false,
       img: require("../assets/logo.png"),
       msg: "Welcome to Your Vue.js App",
       bannerList:[
@@ -89,12 +92,17 @@ export default {
     };
   },
   mounted() {
+    // let time = new Date();
+    // this.date = time.getFullYear()+'/'+(time.getMonth()+1)+'/'+time.getDate();
     this.link = location.href;
     // this.copyBtn = new this.$clipboard('#copyBtn',{
     //   container: document.getElementsByClassName('.mint-button-text')
     // });
   },
   methods: {
+    goAddress(){
+      this.$router.push("/address");
+    },
     PDFLoad() {
       Indicator.open({
         text: "加载中...",
@@ -106,11 +114,15 @@ export default {
       }, 1000);
     },
     handleClick() {
+      this.popupVisible = true;
       Toast({
         message: "Hello world!",
-        position: "top",
-        duration: 1000
+        position: "bottom",
+        duration: 1200
       });
+      setTimeout(()=>{
+        this.popupVisible = false;
+      },1200);
     },
     copyClick(){
       let copyBtn = new this.$clipboard('#copyBtn');
@@ -133,7 +145,7 @@ export default {
       this.textList = this.textList.filter(val => {
         return val.id != id ;
       });
-    }
+    },
   }
 };
 </script>
@@ -143,6 +155,11 @@ export default {
 <style scoped lang="less">
 #hello {
   padding:0.5rem 0 0.58rem;
+  #header{
+    .icon-right{
+      font-size: 0.25rem;
+    }
+  }
   img{
     vertical-top: 0;
   }
