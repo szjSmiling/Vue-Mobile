@@ -1,6 +1,6 @@
 <template>
 	<div class="header flex space-between" v-if="showHeader">
-		<div class="head-ico flex align-items-center" @click="goback">
+		<div class="head-ico head-ico1 flex align-items-center" @click="goback">
 			<slot name="left"></slot>
 		</div>
 		<div class="head-title flex align-items-center" @click="backTop">
@@ -82,7 +82,6 @@ export default {
     }
   }
   .user {
-    width: 0.6rem;
     line-height:0.5rem;
     i {
       padding: 0 0.2rem;

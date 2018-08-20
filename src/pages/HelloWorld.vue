@@ -6,7 +6,7 @@
       <i slot="right" class="icon-right fa fa-map-marker" @click="goAddress"></i>
     </head-top>
     <div style="font-size:18px;">
-      <img :src="img" alt="">
+      <img :src="img" alt="" @click="jumpCareers">
       <h1>{{ msg }}</h1>
       <h2>测试mint-ui的使用</h2>
       <i class="iconfont icon-mobile"></i>
@@ -40,7 +40,7 @@
     </ul>
     <mt-swipe class="mint-swipe" :auto="4000">
      <mt-swipe-item v-if="bannerList?bannerList:false" v-for="(item,index) in bannerList" :key="index">
-      <a href="item.landingPageUrl">
+      <a href="javascript:;">
         <img :src="item" alt="szj-picture" title="szj try it">
       </a>
      </mt-swipe-item>
@@ -100,6 +100,9 @@ export default {
     // });
   },
   methods: {
+    jumpCareers(){
+      this.$router.push("/joinus");
+    },
     goAddress(){
       this.$router.push("/address");
     },

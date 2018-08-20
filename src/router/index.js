@@ -20,6 +20,10 @@ const shoplist6 = resolve => require(['Pages/shop/shoplist6.vue'],resolve);
 const address = resolve => require(['Pages/address/address.vue'],resolve);
 const swiper = resolve => require(['Pages/swiper.vue'],resolve);
 
+const careers = resolve => require(['Pages/careers/careers.vue'],resolve);
+const joinus = resolve => require(['Pages/careers/joinus.vue'],resolve);
+const careersdetail = resolve => require(['Pages/careers/joinusdetail.vue'],resolve);
+
 Vue.use(Router);
 
 const router =  new Router({
@@ -94,6 +98,24 @@ const router =  new Router({
         
       ]
     },
+    {
+      path:"/careers",
+      component:careers
+    },
+    {
+      path:"/joinus",
+      component:joinus,
+      // children:[
+      //   {
+      //     path:"/careersdetail",
+      //     component:careersdetail
+      //   }
+      // ]
+    },
+    {
+      path:"/careersdetail",
+      component:careersdetail
+    }
   ]
 });
 router.beforeEach((to, from, next) => {
