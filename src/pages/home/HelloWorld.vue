@@ -1,9 +1,9 @@
 <template>
   <div id="hello">
-    <head-top id="header">
+    <head-top id="header" :operate="showMenu" >
       <i slot="left" class="iconfont icon-items"></i>
       <span slot="title">szjSmiling</span>
-      <i slot="right" class="icon-right fa fa-map-marker" @click="goAddress"></i>
+      <i slot="right" class="icon-right fa fa-map-marker" @click='$router.push("/address")'></i>
     </head-top>
     <div style="font-size:18px;">
       <img :src="img" alt="" @click="jumpCareers">
@@ -30,7 +30,7 @@
       <li @click="PDFLoad">
         <mt-button>
           <img 
-          src="../assets/images/dog.gif" 
+          src="../../assets/images/dog.gif" 
           type="primary" 
           size="large" 
           height="20" width="20" slot="icon">
@@ -76,7 +76,7 @@ export default {
       link:'',
       date:"Sunning",
       popupVisible:false,
-      img: require("../assets/logo.png"),
+      img: require("../../assets/logo.png"),
       msg: "Welcome to Your Vue.js App",
       bannerList:[
         require('Assets/images/banner/b_flight1.jpg'),require('Assets/images/banner/b_flight2.jpg'),
@@ -100,11 +100,15 @@ export default {
     // });
   },
   methods: {
+    showMenu(){
+      Toast({
+        message:"个人信息",
+        duration:1200,
+        position:'top'
+      });
+    },
     jumpCareers(){
       this.$router.push("/joinus");
-    },
-    goAddress(){
-      this.$router.push("/address");
     },
     PDFLoad() {
       Indicator.open({
@@ -162,9 +166,6 @@ export default {
     .icon-right{
       font-size: 0.25rem;
     }
-  }
-  img{
-    vertical-top: 0;
   }
   h2 {
     padding: 0.1rem 0;

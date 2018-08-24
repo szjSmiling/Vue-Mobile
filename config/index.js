@@ -6,33 +6,27 @@ const path = require('path')
 
 module.exports = {
   dev: {
-
-    // Paths
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
-    proxyTable: {},
-
     // Various Dev Server settings
-    host: 'localhost', // can be overwritten by process.env.HOST
-    port: 8080, // can be overwritten by process.env.PORT, if port is in use, a free one will be determined
+    host: 'www.test.com', // can be overwritten by process.env.HOST
+    port: 8082, // can be overwritten by process.env.PORT, if port is in use, a free one will be determined
     autoOpenBrowser: true,
     errorOverlay: true,
     notifyOnErrors: true,
-    poll: false, // https://webpack.js.org/configuration/dev-server/#devserver-watchoptions-
-
-    
-    /**
-     * Source Maps
-     */
-
+    proxyTable: {
+      "/heg_api": {
+        target: "http://192.168.1.188:8080",
+        secure: false, //false:请求方式为http，true:请求方式为https
+        changeOrigin: true, //是否进行跨域
+        pathRewrite: {
+          '^/heg_api': ''
+        }
+      }
+    },
     // https://webpack.js.org/configuration/devtool/#development
     devtool: 'cheap-module-eval-source-map',
-
-    // If you have problems debugging vue-files in devtools,
-    // set this to false - it *may* help
-    // https://vue-loader.vuejs.org/en/options.html#cachebusting
     cacheBusting: true,
-
     cssSourceMap: true
   },
 

@@ -3,7 +3,7 @@
     <head-top id="header">
       <i slot="left" class="iconfont icon-back"></i>
       <span slot="title">Shopping</span>
-      <i slot="right" class="iconfont icon-cart" ></i>
+      <i slot="right" class="iconfont icon-cart" @click="goToH5pages"></i>
     </head-top>
     <div style="overflow:scroll;">
       <mt-loadmore :top-method="loadTop" @top-status-change="handleTopChange" 
@@ -85,6 +85,9 @@ export default {
           },1200);
         }
       }
+    },
+    goToH5pages(){
+      this.$router.push("/h5rewards");
     },
   },
   mounted() {

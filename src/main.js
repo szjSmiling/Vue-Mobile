@@ -27,6 +27,9 @@ import './assets/iconfont/iconfont.css';//引入字体图标
 import './assets/iconfont/iconfont1.css';//引入字体图标
 import Clipboard from 'clipboard';// 拷贝复制
 import 'font-awesome/css/font-awesome.css';
+import VueUploadComponent from 'vue-upload-component';
+import uploader from 'vue-simple-uploader';
+
 // import fontawesome from '@fortawesome/fontawesome';
 
 // import solid from '@fortawesome/fontawesome-free-solid'
@@ -61,6 +64,8 @@ Vue.component("mt-checklist", Checklist);
 Vue.component("mt-loadmore", Loadmore);
 Vue.component(Field.name, Field);
 Vue.config.productionTip = false;
+Vue.component("file-upload",VueUploadComponent);
+Vue.use(uploader);
 
 Vue.prototype.$clipboard = Clipboard;
 Vue.prototype.$axios = axios;

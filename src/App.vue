@@ -53,7 +53,7 @@ export default {
   font-weight: normal;
   margin-right: 0.2em;
 }
-
+img{vertical-align: top;}
 h1,
 h2 {
   font-weight: normal;

@@ -1,9 +1,9 @@
 <template>
 	<div class="header flex space-between" v-if="showHeader">
-		<div class="head-ico head-ico1 flex align-items-center" @click="goback">
+		<div class="head-ico head-ico1 flex align-items-center" @click="navigate">
 			<slot name="left"></slot>
 		</div>
-		<div class="head-title flex align-items-center" @click="backTop">
+		<div class="head-title flex align-items-center" @click="navigate1">
 			<slot name="title"></slot>
 		</div>
 		<div class="user head-ico flex align-items-center content-end">
@@ -68,7 +68,6 @@ export default {
   z-index: 10;
   background: #0b9d78;
   .title {
-    font-size: 0.25rem;
     color: #fff;
   }
   .head-ico {
@@ -96,7 +95,7 @@ export default {
     }
   }
   .head-title {
-    font-size: 0.25rem;
+    font-size: 0.22rem;
     height: 0.5rem;
     line-height: 0.5rem;
     color: #fff;

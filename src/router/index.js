@@ -2,9 +2,10 @@ import Vue from 'vue';
 import Router from 'vue-router';
 import {Indicator} from 'mint-ui';
 
-const HelloWorld = resolve => require(['Pages/HelloWorld.vue'],resolve);
-const back = resolve => require(['Pages/back.vue'],resolve);
-const PDF = resolve => require(['Pages/showPDF.vue'],resolve);
+const HelloWorld = resolve => require(['Pages/home/HelloWorld.vue'],resolve);
+const back = resolve => require(['Pages/home/back.vue'],resolve);
+const PDF = resolve => require(['Pages/home/showPDF.vue'],resolve);
+const swiper = resolve => require(['Pages/home/swiper.vue'],resolve);
 
 const activity = resolve => require(['Pages/activity/activity.vue'],resolve);
 const actDetails = resolve => require(['Pages/activity/actDetails.vue'],resolve);
@@ -18,11 +19,13 @@ const shoplist5 = resolve => require(['Pages/shop/shoplist5.vue'],resolve);
 const shoplist6 = resolve => require(['Pages/shop/shoplist6.vue'],resolve);
 
 const address = resolve => require(['Pages/address/address.vue'],resolve);
-const swiper = resolve => require(['Pages/swiper.vue'],resolve);
+const Simple = resolve => require(['Pages/address/Simple.vue'],resolve);
 
 const careers = resolve => require(['Pages/careers/careers.vue'],resolve);
 const joinus = resolve => require(['Pages/careers/joinus.vue'],resolve);
 const careersdetail = resolve => require(['Pages/careers/joinusdetail.vue'],resolve);
+
+const h5rewards = resolve => require(['Pages/H5pages/rewards.vue'],resolve);
 
 Vue.use(Router);
 
@@ -99,6 +102,10 @@ const router =  new Router({
       ]
     },
     {
+      path:"/simple",
+      component:Simple
+    },
+    {
       path:"/careers",
       component:careers
     },
@@ -115,7 +122,11 @@ const router =  new Router({
     {
       path:"/careersdetail",
       component:careersdetail
-    }
+    },
+    {
+      path:"/h5rewards",
+      component:h5rewards
+    },
   ]
 });
 router.beforeEach((to, from, next) => {
