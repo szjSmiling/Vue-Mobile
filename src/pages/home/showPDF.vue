@@ -6,7 +6,7 @@
         <span slot="title">szjSmiling</span>
         <i slot="right" class="iconfont icon-file" @click="$router.push('/activity')"></i>
       </head-top>
-      <div><img src="../../assets/logo.png"></div>
+      <div><img src="../../assets/images/logo.png"></div>
       <mt-button @click.native="handleClick" type="danger">
         <i class="iconfont icon-wenjian"></i>
         跳转到PDF

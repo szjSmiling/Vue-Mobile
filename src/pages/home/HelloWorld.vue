@@ -7,6 +7,20 @@
     </head-top>
     <div style="font-size:18px;">
       <img :src="img" alt="" @click="jumpCareers">
+      <p>距离印度的中秋8月15还剩</p>
+      <div class="count-down">
+        <span class="child child0" :style="timeBg">{{time.day1}}</span>
+        <span class="child child00" :style="timeBg">{{time.day2}}</span>
+        <!-- <i>H</i> -->:
+        <span class="child child1" :style="timeBg">{{time.hour1}}</span>
+        <span class="child child2" :style="timeBg">{{time.hour2}}</span>
+        <!-- <i>M</i> -->:
+        <span class="child child3" :style="timeBg">{{time.min1}}</span>
+        <span class="child child4" :style="timeBg">{{time.min2}}</span>
+        <!-- <i>S</i> -->:
+        <span class="child child5" :style="timeBg">{{time.sec1}}</span>
+        <span class="child child6" :style="timeBg">{{time.sec2}}</span>
+      </div>
       <h1>{{ msg }}</h1>
       <h2>测试mint-ui的使用</h2>
       <i class="iconfont icon-mobile"></i>
@@ -76,12 +90,21 @@ export default {
       link:'',
       date:"Sunning",
       popupVisible:false,
-      img: require("../../assets/logo.png"),
+      img: require("../../assets/images/logo.png"),
       msg: "Welcome to Your Vue.js App",
       bannerList:[
         require('Assets/images/banner/b_flight1.jpg'),require('Assets/images/banner/b_flight2.jpg'),
         require('Assets/images/banner/b_flight3.jpg'),require('Assets/images/banner/b_flight4.jpg'),
       ],
+      time:{
+        hour1:0, hour2:0,min1:0,
+        min2:0,sec1:0,sec2:0,day1:0,day2:0
+      },
+      timeBg:{
+        "background-image":'url('+require('../../assets/images/time-bg.png')+')',
+        "background-size":"100% 100%",
+        "background:;-repeat":"no-repeat",
+      },
       textList: [
         { id: 0, title: "首先", content: "first" },
         { id: 1, title: "其次", content: "second" },
@@ -153,7 +176,74 @@ export default {
         return val.id != id ;
       });
     },
-  }
+	  datetime_to_unix(){//将指定时间转化成时间戳
+      var date='2018-09-24 00:00:00';//设置到期时间
+      date = new Date(Date.parse(date.replace(/-/g, '/')));
+      date = date.getTime();
+      return parseInt(date/1000);
+    },
+    getGMTtime(){
+      let d = new Date();
+      let loaclTime = d.getTime();//获得当地时间
+      // console.log(loaclTime);
+      //通过Data()对象的getTimezoneOffset()方法来找出当地时间偏移值
+      let localOffset = d.getTimezoneOffset() * 60000;
+      //getTimezoneOffset()方法的负返回值表示当地时间在全球标准时间（UTC）之前，而正返回值则表示当地时间在全球标准时间（UTC）之后。
+      // console.log(d.getTimezoneOffset());
+      //将本地时间与本地时区偏移值相加得到当前国际标准时间（UTC）。
+      let utc = loaclTime + localOffset;
+      // console.log(utc)
+      //得到国际标准时间（UTC）后，再获得目标城市的国际标准时间（UTC）小时偏移值，把它转换成毫秒，再加上国际标准时间（UTC）。
+      let offset = 5.5;
+      let bombay = utc + (3600000*offset);//变量bombay包含印度孟买城的当地时间
+      //通过初始化一个新的Data()对象，并调用此对象的toLocalString()方法，我们将前一步中计算得到的时间值转换成一个大家可以看得懂的日期/时间字符串
+      // let nd = new Date(bombay);// 印度时间
+      // console.log(nd);
+      return parseInt(bombay/1000);
+    },
+    GetRTime(){
+      //当前时间戳
+      let timestamp = this.getGMTtime();
+      //设定时间的时间戳
+      var timestamp_set = this.datetime_to_unix();
+      //时间戳差
+      var cha_timestamp = timestamp_set-timestamp;
+      if(cha_timestamp <= 0){
+        cha_timestamp = 0;
+        this.text = this.text1;
+        clearTimeout(this.timer);
+      }else{
+        this.text = this.text0;
+      }
+      //剩余天数
+      var sy_day = parseInt(cha_timestamp/(3600*24));
+      var sy_day = sy_day > 9 ?sy_day:'0'+sy_day;
+      //剩余小时
+      var sy1_hour = parseInt(cha_timestamp/(3600)) - sy_day * 24;
+      var sy2_hour = sy1_hour > 9 ? sy1_hour : '0' + sy1_hour;
+      var sy_hour = parseInt((cha_timestamp-sy_day*3600*24)/3600);
+      //剩余分钟
+      var sy_min = parseInt((cha_timestamp-sy_hour*3600-sy_day*24*3600)/60);
+      var sy2_min = sy_min > 9 ? sy_min : '0' + sy_min;
+      //剩余秒数
+      var sy_miao = cha_timestamp-sy_day*3600*24-sy_hour*3600-sy_min*60;
+      var sy2_miao = sy_miao > 9 ? sy_miao : '0' + sy_miao;
+       
+      this.time.day1 = ((sy_day+'').substr(0, 1));
+      this.time.day2 = ((sy_day+'').substr(1, 1));
+      this.time.hour1 = ((sy2_hour+'').substr(0, 1));
+      this.time.hour2 = ((sy2_hour+'').substr(1, 1));
+      this.time.min1 = ((sy2_min+'').substr(0, 1));
+      this.time.min2 = ((sy2_min+'').substr(1, 1));
+      this.time.sec1 = ((sy2_miao+'').substr(0, 1));
+      this.time.sec2 = ((sy2_miao+'').substr(1, 1));
+      this.timer = setTimeout(this.GetRTime, 1000);
+    },
+  },
+  created() {
+    //定时执行，每秒刷新
+    this.GetRTime();
+  },
 };
 </script>
 <!-- Add "scoped" attribute to limit CSS to this component only -->
@@ -172,6 +262,21 @@ export default {
   }
   ul,li {
     list-style-type: none;
+  }
+  .count-down{
+    margin-bottom:0.1rem;
+    font-size:0.16rem;
+    color:#333;
+    span{
+      width: 0.3rem;
+      height: 0.4rem;
+      line-height:0.4rem;
+      font-size:0.3rem;
+      color:#f00;
+    }
+    i{vertical-align:bottom}
+    .child1,.child3,.child5{margin:0 0.05rem 0 0.05rem;}
+    .child2,.child4{margin-right:0.01rem;}
   }
   .btnGroup {
     padding: 0 0 0.1rem;

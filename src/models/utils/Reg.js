@@ -1,6 +1,7 @@
 export const Reg = {
   name: /^[A-Za-z\s\'\-\.]*[A-Za-z]+[A-Za-z\s\'\-\.]*$/,
   number: /[\d\s]+/,
+  ChinaMobile:/^1[34578]\d{9}$/,
   mobile:/^\d{7,13}$/,
   phoneNumber:/^(([\d]+\s)?[\d]{6,20},)*(([\d]+\s)?[\d]{6,20})$/,
   email: /^(([0-9a-zA-Z]+)|([0-9a-zA-Z]+[_.0-9a-zA-Z-]*[0-9a-zA-Z]+))@([a-zA-Z0-9-]+[.])+([a-zA-Z]{2}|net|NET|com|COM|gov|GOV|mil|MIL|org|ORG|edu|EDU|int|INT)$/,
