@@ -117,6 +117,21 @@ export default {
         if(this.applyInfo.joinReason.split('').length >= 300){
           this.applyInfo.joinReason = this.applyInfo.joinReason.substr(0,300);
         }
+        if(this.applyInfo.name != ""){
+          this.form.nameErr = false;
+        } 
+        if(this.applyInfo.email != ""){
+          this.form.emailErr = false;
+        } 
+        if(this.applyInfo.mobile != ""){
+          this.form.mobileErr = false;
+        } 
+        if(this.applyInfo.location != ""){
+          this.form.locationErr = false;
+        }
+        if(this.applyInfo.joinReason != ""){
+          this.form.joinReasonErr = false;
+        }
       },
       deep:true
     }
@@ -127,12 +142,31 @@ export default {
       let size;
       this.fileObj = document.getElementById("upfile").files[0];//获取文件信息
       if(this.fileObj){
-        this.arr.push(this.fileObj);
         size = (this.fileObj.size / (1024 * 1024)).toFixed(2);
-        if(size >= 4){// 判断文件大小
-          Toast("Please select files within 4M")
-        }else{
-          this.isSelectFile = true;
+        let idx = this.fileObj.name.lastIndexOf(".");
+        if (idx != -1){   
+          let ext = this.fileObj.name.substr(idx+1).toUpperCase();   
+          ext = ext.toLowerCase( ); 
+          if (ext != 'pdf' && ext != 'doc' && ext !='docx'){
+            Toast("You can upload.pdf,.doc,.docx files only.")
+            if(this.arr.length >= 1){
+              this.fileObj = this.arr[0];
+            }else{
+              this.isSelectFile = false;
+            }
+          }else{
+            if(size >= 5){
+              Toast("Please select files within 5M")
+              if(this.arr.length >= 1){
+                this.fileObj = this.arr[0];
+              }else{
+                this.isSelectFile = false;
+              }
+            }else{
+              this.arr[0] = this.fileObj;
+              this.isSelectFile = true;
+            }
+          }
         }
       }else{// 当打开本地文件,点击取消不选择时,显示已经选择过的文件,如果没有这个if则显示没有文件的状态
         if(this.arr.length >= 1){
@@ -144,7 +178,7 @@ export default {
     },
     infoJustify(){
       // 判断input的内容正确与否
-      if(this.applyInfo.name == ""){
+      if(this.applyInfo.name == "" || !Reg.name.test(this.applyInfo.name)){
         this.form.nameErr = true;
       }else if(this.applyInfo.email == "" || !Reg.email.test(this.applyInfo.email)){
         this.form.nameErr = false;
@@ -221,6 +255,9 @@ export default {
         el.focus()
       }
     }
+  },
+  filters:{
+
   }
 }
 </script>
