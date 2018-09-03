@@ -19,21 +19,21 @@
 
 **加粗** and *斜体* and ***斜体加粗*** and ~~删除线~~
 
-
-
-![blockchain](https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=702257389,1274025419&fm=27&gp=0.jpg "区块链")
 [百度-markdown语法](http://baidu.com)
+
 ****
 <a href="https://www.jianshu.com/u/1f5ac0cf6a8b" target="_blank">简书-html语法</a>
 <hr>
 
-[索引链接1][1]
+[博客园][1]
 
-[索引链接2][2]
+[CSDN][2]
 
-[索引链接3][3]
+[github][3]
 
-<http://ibruce.info> `自动连接`
+[![](https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=702257389,1274025419&fm=27&gp=0.jpg "相对链接")](https://github.com/szjSmiling)
+
+<https://github.com/szjSmiling/szj-Vue-with-MintUI> `自动连接-github`
 
 - 无序列表
    - 子列表
@@ -72,8 +72,9 @@
   &
 ```
 
-`索引连接的地址`
+![blockchain](https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=702257389,1274025419&fm=27&gp=0.jpg "区块链")
 
-  [1]:http://bruce-sha.github.io
-  [2]:http://bruce-sha.github.io
-  [3]:http://bruce-sha.github.io
+
+[1]:https://home.cnblogs.com/
+[2]:https://github.com/szjSmiling
+[3]:https://blog.csdn.net/szjSmiling
