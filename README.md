@@ -29,14 +29,15 @@
 
 [github][3]
 
-[![](https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=702257389,1274025419&fm=27&gp=0.jpg "相对链接")](https://github.com/szjSmiling)
+[![](https://avatars0.githubusercontent.com/u/31468773?s=60&v=4 "相对链接")](https://github.com/szjSmiling)
 
 <https://github.com/szjSmiling/szj-Vue-with-MintUI> `自动连接-github`
 
-- 无序列表
-   - 子列表
 + 无序列表+
 * 无序列表*
+- 无序列表
+  * 子列表
+    + 子列表
 
 ## 有序列表-数字+点+内容
 
