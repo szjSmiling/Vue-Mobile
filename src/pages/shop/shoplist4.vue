@@ -85,40 +85,39 @@ export default {
       // 获取项目列表
       let _this = this;
       this.isLoading = true;
-      this.$http
-        .get("/api/steward/projects", {
-          params: {
-            status: _this.selectIndex,
-            current_page: _this.pageInfo.page,
-            per_page: _this.pageInfo.page_size
-          }
-        })
-        .then(res => {
-          let datas = res.data;
-          if (datas.code === 0) {
-            if (type === "loadMore") {
-              this.list = this.list.concat(datas.data.data);
-            } else {
-              this.list = datas.data.data;
-            }
-            // 设置分页
-            this.pageInfo.total = datas.data.total;
-            this.pageInfo.totalPage = Math.ceil(
-              this.pageInfo.total / this.pageInfo.page_size
-            );
-            console.log(
-              "总页数",
-              Math.ceil(this.pageInfo.total / this.pageInfo.page_size)
-            );
-          } else {
-            Toast({
-              message: datas.msg,
-              duration: 2000
-            });
-          }
-          this.isLoading = false;
-          this.isMoreLoading = false;
-        });
+      // this.$http.get("/api/steward/projects", {
+      //   params: {
+      //     status: _this.selectIndex,
+      //     current_page: _this.pageInfo.page,
+      //     per_page: _this.pageInfo.page_size
+      //   }
+      // })
+      // .then(res => {
+      //   let datas = res.data;
+      //   if (datas.code === 0) {
+      //     if (type === "loadMore") {
+      //       this.list = this.list.concat(datas.data.data);
+      //     } else {
+      //       this.list = datas.data.data;
+      //     }
+      //     // 设置分页
+      //     this.pageInfo.total = datas.data.total;
+      //     this.pageInfo.totalPage = Math.ceil(
+      //       this.pageInfo.total / this.pageInfo.page_size
+      //     );
+      //     console.log(
+      //       "总页数",
+      //       Math.ceil(this.pageInfo.total / this.pageInfo.page_size)
+      //     );
+      //   } else {
+      //     Toast({
+      //       message: datas.msg,
+      //       duration: 2000
+      //     });
+      //   }
+      //   this.isLoading = false;
+      //   this.isMoreLoading = false;
+      // });
     },
     loadMore() {
       // 加载更多
