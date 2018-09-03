@@ -327,7 +327,7 @@ export default {
           }
           input{
             position: absolute;
-            width:0.66rem;
+            width:55%;
             opacity: 0;
             display:inline-block;
             padding:0;
