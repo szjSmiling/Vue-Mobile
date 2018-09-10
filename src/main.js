@@ -13,6 +13,7 @@ import {
   Lazyload,
   Checklist,
   Loadmore,
+  CellSwipe,
   InfiniteScroll,
 } from "mint-ui";
 import Vue from 'vue';
@@ -31,13 +32,13 @@ import VueUploadComponent from 'vue-upload-component';
 import uploader from 'vue-simple-uploader';
 import md5 from 'js-md5';
 import base64 from 'js-base64';
+import filters from "./filter/filter.js";
 
 // import fontawesome from '@fortawesome/fontawesome';
 
 // import solid from '@fortawesome/fontawesome-free-solid'
 // import regular from '@fortawesome/fontawesome-free-regular'
 // import brands from '@fortawesome/fontawesome-free-brands'
-
 
 // fontawesome.library.add(solid)
 // fontawesome.library.add(regular)
@@ -66,6 +67,7 @@ Vue.component("mt-checklist", Checklist);
 Vue.component("mt-loadmore", Loadmore);
 Vue.component(Field.name, Field);
 Vue.config.productionTip = false;
+Vue.component(CellSwipe.name, CellSwipe);
 Vue.component("file-upload",VueUploadComponent);
 Vue.use(uploader);
 
@@ -73,6 +75,7 @@ Vue.prototype.$clipboard = Clipboard;
 Vue.prototype.$md5 = md5;
 Vue.prototype.$Base64 = base64.Base64;
 Vue.prototype.$axios = axios;
+Vue.filter("formatDate", filters.formatDate);
 AxiosConfig.init();
 FontUtil.init();
 /* eslint-disable no-new */

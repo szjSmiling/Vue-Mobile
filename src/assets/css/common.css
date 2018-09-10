@@ -103,6 +103,12 @@ span {
 .flex-space-around{
   align-content:space-around;
 }
+.space-around {
+  -webkit-box-pack: justify;
+  -moz-justify-content: space-around;
+  -webkit-justify-content: space-around;
+  justify-content: space-around;
+}
 .space-between {
   -webkit-box-pack: justify;
   -moz-justify-content: space-between;

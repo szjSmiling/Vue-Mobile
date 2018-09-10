@@ -26,6 +26,13 @@ const joinus = resolve => require(['Pages/careers/joinus.vue'],resolve);
 const careersdetail = resolve => require(['Pages/careers/joinusdetail.vue'],resolve);
 
 const h5rewards = resolve => require(['Pages/H5pages/rewards.vue'],resolve);
+const h5shake = resolve => require(['Pages/H5pages/shake.vue'],resolve);
+
+const autumnsale = resolve => require(["Pages/autumn/autumnsale.vue"],resolve);
+const autumnshake = resolve => require(["Pages/autumn/autumn.vue"],resolve);
+const autumnrules = resolve => require(["Pages/autumn/autumnrules.vue"],resolve);
+const autumnprizes = resolve => require(["Pages/autumn/autumnprizes.vue"],resolve);
+const autumnintro = resolve => require(["Pages/autumn/autumnintro.vue"],resolve);
 
 Vue.use(Router);
 
@@ -126,6 +133,30 @@ const router =  new Router({
     {
       path:"/h5rewards",
       component:h5rewards
+    },
+    {
+      path:"/h5shake",
+      component:h5shake
+    },
+    {
+      path: "/autumnsale",
+      component: autumnsale
+    },
+    {
+      path: "/autumnshake",
+      component: autumnshake
+    },
+    {
+      path: "/autumnrules",
+      component: autumnrules
+    },
+    {
+      path: "/autumnprizes",
+      component: autumnprizes
+    },
+    {
+      path: "/autumnintro",
+      component: autumnintro
     },
   ]
 });

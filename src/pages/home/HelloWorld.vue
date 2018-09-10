@@ -5,8 +5,10 @@
       <span slot="title">szjSmiling</span>
       <i slot="right" class="icon-right fa fa-map-marker" @click='$router.push("/address")'></i>
     </head-top>
-    <div style="font-size:18px;">
-      <img :src="img" alt="" @click="jumpCareers">
+    <div style="font-size:18px;position:relative;">
+      <img class="icon_shake" @click="$router.push('/autumnshake')" :src="require('../../assets/images/autumn/icon_shake.png')" alt="">
+      <img class="icon_careers" @click="$router.push('/joinus')" :src="require('../../assets/images/joinus/join-character.png')" alt="">
+      <img :src="img" alt="" @click="$router.push('/')">
       <p>距离印度的中秋8月15还剩</p>
       <div class="count-down">
         <span class="child child0" :style="timeBg">{{time.day1}}</span>
@@ -52,8 +54,9 @@
         </mt-button>
       </li>
     </ul>
-    <mt-swipe class="mint-swipe" :auto="4000">
-     <mt-swipe-item v-if="bannerList?bannerList:false" v-for="(item,index) in bannerList" :key="index">
+    <mt-swipe class="mint-swipe" :auto="isPlay" @change="handleChange">
+      <i class="fa fa-chevron-left" style="font-size:50px;height:30px;position:absolute;z-index:6;color:#fff;left:0;top:0;bottom:0;margin:auto;cursor:pointer;" @click="leftSwiper"></i>
+     <mt-swipe-item :class="{'is-active':i == index}" v-if="bannerList?bannerList:false" v-for="(item,i) in bannerList" :key="i">
       <a href="javascript:;">
         <img :src="item" alt="szj-picture" title="szj try it">
       </a>
@@ -74,6 +77,52 @@
   </div>
 </template>
 <script>
+  // function ScreenSaver(settings){     
+  //   this.settings = settings;     
+  //   this.nTimeout = this.settings.timeout;     
+                    
+  //   document.body.screenSaver = this;     
+  //   // link in to body events     
+  //   document.body.onmousemove = ScreenSaver.prototype.onevent;     
+  //   document.body.onmousedown = ScreenSaver.prototype.onevent;     
+  //   document.body.onkeydown = ScreenSaver.prototype.onevent;     
+  //   document.body.onkeypress = ScreenSaver.prototype.onevent;     
+            
+  //   var pThis = this;     
+  //   var f = function(){pThis.timeout();}     
+  //   this.timerID = window.setTimeout(f, this.nTimeout);     
+  // }     
+	// ScreenSaver.prototype.timeout = function(){     
+	//     if ( !this.saver ){
+	//         window.location = 'www.baidu.com';   
+	//     }     
+	// }     
+	// ScreenSaver.prototype.signal = function(){     
+	//     if ( this.saver ){     
+	//         this.saver.stop();     
+	//     }     
+	         
+	//     window.clearTimeout(this.timerID);     
+	         
+	//     var pThis = this;     
+	//     var f = function(){pThis.timeout();}     
+	//     this.timerID = window.setTimeout(f, this.nTimeout);     
+	// }     
+	    
+	// ScreenSaver.prototype.onevent = function(e){     
+	//     this.screenSaver.signal();     
+	// }     
+	    
+	    
+	// var saver;     
+	// function initScreenSaver(){     
+	//     //blort;     
+	//     saver = new ScreenSaver({timeout:4000});   //无动作时间  
+	// }     
+	// window.onload = function(){     
+	//   initScreenSaver();     
+	// }     
+
 import headTop from "@/components/head/header.vue";
 import footEnd from "@/components/foot/footer.vue";
 import { Indicator, Toast, Swipe, SwipeItem } from "mint-ui";
@@ -88,6 +137,10 @@ export default {
   data() {
     return {
       link:'',
+      isPlay:0,
+      index:0,
+      isauto:false,
+      timer:null,
       date:"Sunning",
       popupVisible:false,
       img: require("../../assets/images/logo.png"),
@@ -123,15 +176,28 @@ export default {
     // });
   },
   methods: {
+    autoPlay(){
+      if(this.isPlay != 0){
+        this.isPlay == 4000;
+      }
+    },
+    leftSwiper(){
+      this.isauto = false,
+      this.isPlay = 0;
+      this.index ++;
+      if(this.index > 3){
+        this.index = 0;
+      }
+    },
+    handleChange(index){
+      this.index = index;
+    },
     showMenu(){
       Toast({
         message:"个人信息",
         duration:1200,
         position:'top'
       });
-    },
-    jumpCareers(){
-      this.$router.push("/joinus");
     },
     PDFLoad() {
       Indicator.open({
@@ -247,8 +313,6 @@ export default {
 };
 </script>
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-</style>
 <style scoped lang="less">
 #hello {
   padding:0.5rem 0 0.58rem;
@@ -303,6 +367,7 @@ export default {
   }
   .mint-swipe {
     height:2.2rem;
+    .mint-swipe-items-wrap > div{z-index:5;}
     a,img{
       width: 100%;
       height:100%;
@@ -327,6 +392,19 @@ export default {
         }
       }
     }
+  }
+  .icon_shake{
+    position: absolute;
+    left: 0.2rem;
+    top:0.5rem;
+    cursor: pointer;
+  }
+  .icon_careers{
+    width:0.6rem;
+    position: absolute;
+    right: 0.2rem;
+    top:0.5rem;
+    cursor: pointer;
   }
 }
 </style>

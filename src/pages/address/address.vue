@@ -47,7 +47,12 @@
           </div>
         </div>
         <div class="ad-right">
-          <!-- <input type="file" id="fileUpload" name="fileUpload" @change="uploads">   -->
+          <div class="page-cell">
+            <div class="page-title">Cell Swipe</div>
+            <mt-cell-swipe v-for="(n,i) in 10" :key="i" :right="rightButtons"
+              title="swipe me">
+            </mt-cell-swipe>
+          </div>
         </div>
       </div>
     </div>
@@ -93,6 +98,17 @@ export default {
         name:"",email:"",mobile:"",location:"",joinReason:"",
         linkedinUrl:"",departmentId:"",positionId:"",file:""
       },
+      rightButtons:[// 定义按钮内容和数量
+        {
+          content: 'Mark',
+          style: { background: 'lightgray', color: '#fff' }
+        },
+        {
+          content: 'Delete',
+          style: { background: 'red', color: '#fff' },
+          handler: () => Toast('delete')
+        }
+      ],
     }
   },
   created() {
@@ -190,18 +206,9 @@ export default {
     cancelled(){
       this.cancelOrder = false;
     },
-    uploads(e){
-      // const file=e.target.files[0];//获取到当前文件对象
-      // // 传递一个 FormData 对象 即可 
-      // let formData=new FormData();
-      // formData.append('fileUpload',file); // fileUpload 是 input 表单的name 属性
-      // // 服务器只需按照正常的上传程序代码即可
-      // this.$axios.post('/heg_api/join/saveCareer.do',this.fileData).then(rs=>{
-      //    console.log(rs)
-      // }).catch(err=>{
-      //    console.log(err)
-      // })
-    },
+    leftButtonHandler(evt) {
+      console.log(123);
+    }
   },
 }
 </script>
@@ -255,23 +262,7 @@ export default {
       }
     }
     .ad-right{
-      .uploader-example {
-        width:100%;
-        padding: 15px 0;
-        margin: 40px auto 0;
-        font-size: 12px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, .4);
-        .uploader-drop{width: 100%;}
-      }
-      .uploader-example .uploader-btn {
-        margin-right: 4px;
-      }
-      .uploader-example .uploader-list {
-        max-height: 440px;
-        overflow: auto;
-        overflow-x: hidden;
-        overflow-y: auto;
-      }
+      .page-cell{font-size:18px;}
     }
   }
 }
