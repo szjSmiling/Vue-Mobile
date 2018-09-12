@@ -100,8 +100,12 @@
       <div class="part-share">
         <p class="share-title">Invite your friends to play now</p>
         <ul class="flex space-around align-items-center">
-          <li v-for="(item,index) in sharesApp" :key="index" :id="'openApp'+[index]" @click="shareDevice(index)">
-            <a :href="item.href" :data-action="index == 1?item.action:''" target="_blank">
+          <li v-for="(item,index) in sharesApp" :key="index">
+            <a v-if="index == 0" :href="(isIos && index == 0)?item.href2:item.href" target="_blank" @click="shareToApp(index)">
+              <img :src="item.icon" alt="">
+              <p>{{item.name}}</p>
+            </a>
+            <a v-else :href="item.href" :data-action="index == 1?item.action:''" target="_blank" @click="shareToApp(index)">
               <img :src="item.icon" alt="">
               <p>{{item.name}}</p>
             </a>
@@ -146,6 +150,7 @@ export default {
     return {
       flag:true,
       isApp:false,
+      isIos:false,
       isShowBtn:true,
       saleTime:"01d:03h:21m:34s",
       isLogin:CookieUtil.hasItem('uuid'),
@@ -184,9 +189,10 @@ export default {
         {prizeName:"ZOOMCAR",url:require('../../assets/images/autumn/banner-zoomcar.png')},
       ],
       sharesApp:[
-        {id:0,name:"SMS",href:'sms:18530365351?body=hello',icon:require('../../assets/images/autumn/share_sms.png')},
-        {id:1,name:"Whatsapp",href:'whatsapp://send?text=',action:'share/whatsapp/share',icon:require('../../assets/images/autumn/share_whatsapp.png')},
-        {id:2,name:"Messenger",href:'fb-messenger://share/?link= https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fsharing%2Freference%2Fsend-dialog&app_id=123456789',icon:require('../../assets/images/autumn/share_msg.png')},
+        {id:0,name:"SMS",href:CookieUtil.hasItem('uuid')?'sms:?body='+CookieUtil.getItem('username')+encodeURIComponent(' invites you to Shake & Win. Shake your phone & score FREE FLIGHT TICKET, voucher & ecash with HappyEasyGo. Know more: https://goo.gl/P8TkvY'):'sms:?body='+encodeURIComponent('HappyEasyGo invites you to Shake & Win. Shake your phone & score FREE FLIGHT TICKET, voucher & ecash with HappyEasyGo. Know more: https://goo.gl/P8TkvY'),
+          href2:CookieUtil.hasItem('uuid')?'sms:&body='+CookieUtil.getItem('username')+encodeURIComponent(' invites you to Shake & Win. Shake your phone & score FREE FLIGHT TICKET, voucher & ecash with HappyEasyGo. Know more: https://goo.gl/P8TkvY'):'sms:&body='+encodeURIComponent('HappyEasyGo invites you to Shake & Win. Shake your phone & score FREE FLIGHT TICKET, voucher & ecash with HappyEasyGo. Know more: https://goo.gl/P8TkvY'),icon:require('../../assets/images/autumn/share_sms.png')},
+        {id:1,name:"Whatsapp",href:CookieUtil.hasItem('uuid')?'whatsapp://send?text='+CookieUtil.getItem('username')+encodeURIComponent('invites you to Shake & Win with HappyEasyGo. Win FREE FLIGHT TICKET, voucher & e-cash by shaking your phone. https://goo.gl/z4AArY'):'whatsapp://send?text='+encodeURIComponent('HappyEasyGo invites you to Shake & Win with HappyEasyGo. Win FREE FLIGHT TICKET, voucher & e-cash by shaking your phone. https://goo.gl/z4AArY'),action:'share/whatsapp/share',icon:require('../../assets/images/autumn/share_whatsapp.png')},
+        {id:2,name:"Messenger",href:'fb-messenger://share/?link='+encodeURIComponent('https://goo.gl/e18H45')+'&app_id=123456789',icon:require('../../assets/images/autumn/share_msg.png')},
         {id:3,name:"More",href:'javascript:;',icon:require('../../assets/images/autumn/share_more.png')},
       ],
       s3Shares:[
@@ -322,7 +328,12 @@ export default {
     },
   },
   created() {
-    
+    var u = navigator.userAgent;
+    var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1;
+    var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); 
+    if(isiOS){
+      this.isIos = true;
+    }
   },
 }
 </script>

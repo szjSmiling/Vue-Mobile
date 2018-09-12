@@ -30,7 +30,7 @@ export default {
     return{
       lists:[
         {id:0,icon:require('../../assets/images/autumn/prize1.png'),title:"Zoomcar Coupon",
-          flag:true,detail:'Zoomcar coupons can be used on Zoomcar’s official website <a href="https://goo.gl/f4Eyyo" style="display:inline-block;color:#0b9d78;">(https://goo.gl/f4Eyyo)</a> for a maximum discount of ₹1000 or 20 percent of the booking, whichever is lower.'
+          flag:false,detail:'Zoomcar coupons can be used on Zoomcar’s official website <a href="https://goo.gl/f4Eyyo" style="display:inline-block;color:#0b9d78;">(https://goo.gl/f4Eyyo)</a> for a maximum discount of ₹1000 or 20 percent of the booking, whichever is lower.'
         },
         {id:1,icon:require('../../assets/images/autumn/Group 6 Copy 2.png'),title:"Zoomcar Coupon",
           flag:false,detail:'Zoomcar coupons can be used on Zoomcar’s official website <a href="https://goo.gl/f4Eyyo" style="display:inline-block;color:#0b9d78;">(https://goo.gl/f4Eyyo)</a> for a maximum discount of ₹1000 or 20 percent of the booking, whichever is lower.'
@@ -70,7 +70,13 @@ export default {
   },
   methods:{
     openDetail(who){
-      this.lists[who].flag = ! this.lists[who].flag;
+      this.lists.forEach((e,i)=>{
+        if(who == i){
+          this.lists[who].flag = !this.lists[who].flag;
+        }else{
+          this.lists[i].flag = false;
+        }
+      })
     }
   }
 }

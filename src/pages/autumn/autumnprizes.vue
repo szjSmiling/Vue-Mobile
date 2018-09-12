@@ -74,7 +74,13 @@ export default {
   },
   methods:{
     openDetail(who){
-      this.prizeInfo[who].flag = ! this.prizeInfo[who].flag;
+      this.prizeInfo.forEach((e,i)=>{
+        if(who == i){
+          this.prizeInfo[who].flag = !this.prizeInfo[who].flag;
+        }else{
+          this.prizeInfo[i].flag = false;
+        }
+      })
     },
     getPrizeRecord(){
       Indicator.open({
@@ -100,9 +106,9 @@ export default {
             this.$set(e,"startDate",this.transformDate(e.startDate,2));
             this.$set(e,"endDate",this.transformDate(e.endDate,2));
             this.$set(e,'flag',false);
-            if(i == 0){
-              this.$set(e,'flag',true);
-            }
+            // if(i == 0){// 默认第一项展开
+            //   this.$set(e,'flag',true);
+            // }
           });
           setTimeout(()=>{
             Indicator.close();

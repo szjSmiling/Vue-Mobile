@@ -33,7 +33,11 @@
         <h5>Invite your friends to play now</h5>
         <ul class="flex space-around align-items-center">
           <li v-for="(item,index) in sharesApp" :key="index" :id="'openApp'+[index]" @click="shareDevice(index)">
-            <a :href="item.href" :data-action="index == 1?item.action:''" target="_blank">
+            <a v-if="index == 0" :href="(isIos && index == 0)?item.href2:item.href" target="_blank">
+              <img :src="item.icon" alt="">
+              <p>{{item.name}}</p>
+            </a>
+            <a v-else :href="item.href" :data-action="index == 1?item.action:''" target="_blank">
               <img :src="item.icon" alt="">
               <p>{{item.name}}</p>
             </a>
@@ -45,7 +49,7 @@
         <ul>
           <li><router-link to="/register">Sign up</router-link> with HappyEasyGo +1</li>
           <li><router-link to="/">Book flight tickets</router-link> +1</li>
-          <li>First <router-link to="/">sync your contacts</router-link> +1</li>
+          <li>First <a href="https://app.adjust.com/s1vq100?deeplink=heg%3A%2F%2FAutumnS">sync your contacts</a> +1</li>
           <li><router-link to="/">Get a referral order</router-link> +1</li>
           <li><router-link to="/">Get a referral registration</router-link> +1</li>
         </ul>
@@ -64,6 +68,7 @@ export default {
   },
   data(){
     return{
+      isIos:false,
       timer:null,
       AppHeight:false,
       chances:null,
@@ -89,14 +94,21 @@ export default {
         {id:3,name:"My Prizes",icon:require('../../assets/images/autumn/app_share_record.png')},
       ],
       sharesApp:[
-        {id:0,name:"SMS",href:'sms:18530365351?body=hello',icon:require('../../assets/images/autumn/share_sms.png')},
-        {id:1,name:"Whatsapp",href:'whatsapp://send?text=',action:'share/whatsapp/share',icon:require('../../assets/images/autumn/share_whatsapp.png')},
-        {id:2,name:"Messenger",href:'fb-messenger://share/?link= https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fsharing%2Freference%2Fsend-dialog&app_id=123456789',icon:require('../../assets/images/autumn/share_msg.png')},
+        {id:0,name:"SMS",href:CookieUtil.hasItem('uuid')?'sms:?body='+CookieUtil.getItem('username')+encodeURIComponent(' invites you to Shake & Win. Shake your phone & score FREE FLIGHT TICKET, voucher & ecash with HappyEasyGo. Know more: https://goo.gl/P8TkvY'):'sms:?body='+encodeURIComponent('HappyEasyGo invites you to Shake & Win. Shake your phone & score FREE FLIGHT TICKET, voucher & ecash with HappyEasyGo. Know more: https://goo.gl/P8TkvY'),
+          href2:CookieUtil.hasItem('uuid')?'sms:&body='+CookieUtil.getItem('username')+encodeURIComponent(' invites you to Shake & Win. Shake your phone & score FREE FLIGHT TICKET, voucher & ecash with HappyEasyGo. Know more: https://goo.gl/P8TkvY'):'sms:&body='+encodeURIComponent('HappyEasyGo invites you to Shake & Win. Shake your phone & score FREE FLIGHT TICKET, voucher & ecash with HappyEasyGo. Know more: https://goo.gl/P8TkvY'),icon:require('../../assets/images/autumn/share_sms.png')},
+        {id:1,name:"Whatsapp",href:CookieUtil.hasItem('uuid')?'whatsapp://send?text='+CookieUtil.getItem('username')+encodeURIComponent('invites you to Shake & Win with HappyEasyGo. Win FREE FLIGHT TICKET, voucher & e-cash by shaking your phone. https://goo.gl/z4AArY'):'whatsapp://send?text='+encodeURIComponent('HappyEasyGo invites you to Shake & Win with HappyEasyGo. Win FREE FLIGHT TICKET, voucher & e-cash by shaking your phone. https://goo.gl/z4AArY'),action:'share/whatsapp/share',icon:require('../../assets/images/autumn/share_whatsapp.png')},
+        {id:2,name:"Messenger",href:'fb-messenger://share/?link='+encodeURIComponent('https://goo.gl/e18H45')+'&app_id=123456789',icon:require('../../assets/images/autumn/share_msg.png')},
         {id:3,name:"More",href:'javascript:;',icon:require('../../assets/images/autumn/share_more.png')},
       ]
     }
   },
   created() {
+    var u = navigator.userAgent;
+    var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1;
+    var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); 
+    if(isiOS){
+      this.isIos = true;
+    }
     let height = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
     if(height > 550){
       this.AppHeight = true;
@@ -108,7 +120,6 @@ export default {
           : window.heg.getNativeSource();
       this.contentMargin =
         Number(deviceObj.deviceType) == 1 && !deviceObj.deviceNative;
-
       let uuid = window.heg.getNativeUuid();
       if(uuid){
         CookieUtil.setItem('uuid', uuid);
