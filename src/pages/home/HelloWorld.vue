@@ -9,6 +9,12 @@
       <img class="icon_shake" @click="$router.push('/autumnshake')" :src="require('../../assets/images/autumn/icon_shake.png')" alt="">
       <img class="icon_careers" @click="$router.push('/joinus')" :src="require('../../assets/images/joinus/join-character.png')" alt="">
       <img :src="img" alt="" @click="$router.push('/')">
+      <img class="icon_vuex" @click="$router.push('/vuex-test')" :src="require('../../assets/images/vuex/vuex.png')" alt="">
+      <span class="icon_class" @click="$router.push('/es6')">封装Class</span>
+      <span class="icon_class1" @click="$router.push('/es6-class')">封装Class1</span>
+      <span class="icon_class2" @click="$router.push('/es6-class')">封装Class2</span>
+      <span class="icon_class3" @click="$router.push('/es6-class')">封装Class3</span>
+      <span class="icon_class4" @click="$router.push('/es6-class')">封装Class4</span>
       <p>距离印度的中秋8月15还剩</p>
       <div class="count-down">
         <span class="child child0" :style="timeBg">{{time.day1}}</span>
@@ -243,7 +249,7 @@ export default {
       });
     },
 	  datetime_to_unix(){//将指定时间转化成时间戳
-      var date='2018-09-24 00:00:00';//设置到期时间
+      var date='2018-12-31 00:00:00';//设置到期时间
       date = new Date(Date.parse(date.replace(/-/g, '/')));
       date = date.getTime();
       return parseInt(date/1000);
@@ -396,15 +402,57 @@ export default {
   .icon_shake{
     position: absolute;
     left: 0.2rem;
-    top:0.5rem;
+    top:0.1rem;
     cursor: pointer;
   }
   .icon_careers{
     width:0.6rem;
     position: absolute;
     right: 0.2rem;
-    top:0.5rem;
+    top:0.1rem;
     cursor: pointer;
+  }
+  .icon_vuex{
+    width:0.6rem;
+    position: absolute;
+    left: 0.2rem;
+    top:0.8rem;
+    cursor: pointer;
+  }
+  .icon_class{
+    position: absolute;
+    left: 0.2rem;
+    top:1.3rem;
+    cursor: pointer;
+    color:#0f0;
+  }
+  .icon_class1{
+    position: absolute;
+    right: 0.2rem;
+    top:1rem;
+    cursor: pointer;
+    color:#0f0;
+  }
+  .icon_class2{
+    position: absolute;
+    left: 0.2rem;
+    top:1.6rem;
+    cursor: pointer;
+    color:#00f;
+  }
+  .icon_class3{
+    position: absolute;
+    right: 0.2rem;
+    top:1.3rem;
+    cursor: pointer;
+    color:#f00;
+  }
+  .icon_class4{
+    position: absolute;
+    right: 0.2rem;
+    top:1.6rem;
+    cursor: pointer;
+    color:#0b9d78;
   }
 }
 </style>

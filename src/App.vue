@@ -19,10 +19,10 @@ export default {
     console.log("the hook of mounted is done!");
   },
   activated: function() {
-    console.log("the hook of activated is done!");
+    console.log("after keep-alive,refresh page activated is done!");
   },
   deactivated: function() {
-    console.log("the hook of deactivated is done!");
+    console.log("after keep-alive,refresh page deactivated is done!");
   }
 };
 </script>
@@ -72,8 +72,8 @@ select {
 }
 .picker-toolbar{
   font-size:0.2rem;
-  height:0.3rem;
-  line-height:0.3rem;
+  height:0.4rem;
+  line-height:0.4rem;
   color: #f655f6;
 }
 .mt-range-progress {
@@ -91,7 +91,7 @@ select {
 .mint-popup {
   border-radius: 0.04rem;
   font-size: 0.18rem;
-  padding: 0.1rem;
+  // padding: 0.1rem;
   border: 1px solid #eee;
 }
 

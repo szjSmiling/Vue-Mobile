@@ -34,6 +34,12 @@ const autumnrules = resolve => require(["Pages/autumn/autumnrules.vue"],resolve)
 const autumnprizes = resolve => require(["Pages/autumn/autumnprizes.vue"],resolve);
 const autumnintro = resolve => require(["Pages/autumn/autumnintro.vue"],resolve);
 
+const vuexTest = resolve => require(["Pages/testVuex/test.vue"],resolve);
+
+const es6 = resolve => require(["Pages/ES6Class/es6.vue"],resolve);
+
+const userinfo = resolve => require(["Pages/userinfo/userinfo.vue"],resolve);
+
 Vue.use(Router);
 
 const router =  new Router({
@@ -157,6 +163,18 @@ const router =  new Router({
     {
       path: "/autumnintro",
       component: autumnintro
+    },
+    {
+      path: "/userinfo",
+      component: userinfo
+    },
+    {
+      path: "/vuex-test",
+      component: vuexTest
+    },
+    {
+      path: "/es6",
+      component: es6
     },
   ]
 });

@@ -8,12 +8,14 @@ import {
   Popup,
   Radio,
   Range,
+  Cell,
   Badge,
   Spinner,
   Lazyload,
   Checklist,
   Loadmore,
   CellSwipe,
+  Actionsheet ,
   InfiniteScroll,
 } from "mint-ui";
 import Vue from 'vue';
@@ -33,6 +35,7 @@ import uploader from 'vue-simple-uploader';
 import md5 from 'js-md5';
 import base64 from 'js-base64';
 import filters from "./filter/filter.js";
+import iOSBridge from './request/bridge.js';
 
 // import fontawesome from '@fortawesome/fontawesome';
 
@@ -62,8 +65,10 @@ Vue.component("mt-button", Button);
 Vue.component("mt-range", Range);
 Vue.component("mt-popup", Popup);
 Vue.component("mt-radio", Radio);
+Vue.component("mt-cell", Cell);
 Vue.component("mt-spinner", Spinner);
 Vue.component("mt-checklist", Checklist);
+Vue.component("mt-actionsheet", Actionsheet);
 Vue.component("mt-loadmore", Loadmore);
 Vue.component(Field.name, Field);
 Vue.config.productionTip = false;
@@ -75,6 +80,7 @@ Vue.prototype.$clipboard = Clipboard;
 Vue.prototype.$md5 = md5;
 Vue.prototype.$Base64 = base64.Base64;
 Vue.prototype.$axios = axios;
+Vue.prototype.$bridge = iOSBridge;
 Vue.filter("formatDate", filters.formatDate);
 AxiosConfig.init();
 FontUtil.init();
