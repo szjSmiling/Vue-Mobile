@@ -22,6 +22,7 @@
         test2 <br>
         <p class="test-p">{{getTodoById}}</p>
         <p class="test-p">{{commitState1}}</p>
+        <p>{{now}}</p>
       </div>
     </div>
   </div>
@@ -35,6 +36,7 @@ export default {
     return {
       count:1,
       key: "Milk",
+      date:'',
       msg:'vuex的test数据',
       todos: [
         { id: 1, text: '...', done: true },
@@ -79,16 +81,33 @@ export default {
       })     
     },
     commitState1(){
-      this.$store.commit('increment',{amount:2})
+      // this.$store.commit('increment',{amount:2});
+      this.$store.commit('minus',{amount:1})
+      // this.$store.dispatch("incrementP", {amount:2});
       return this.$store.state.Xtest1.data1;
+    },
+    now() {
+      // return Date.now()
+      setInterval(()=>{
+        this.date = new Date().toLocaleString();
+      },1000);
+      return this.date;
     }
   },
   methods:{
+    // ...mapActions(["incrementP","minusP","updateUserInfo"]),
+    ...mapActions({foo1:"incrementP",foo2:"minusP",foo3:"updateUserInfo"}),
+    // 相当于
+    // foo1(val){
+    //   return this.$store.dispatch('incrementP',val);
+    // },
     refreshData(){
       this.$store.dispatch("updateUserInfo", {nickName:'nick'});
       this.msg = this.msg +'---'+ this.$store.state.Xtest1.nickName;
+      // this.foo1({amount:1});
+      this.foo2({amount:1});
+      console.log(this.$store.state.Xtest1);
     },
-    ...mapActions(["incrementP"]),
   },
   filters: {
     sum(value,str){

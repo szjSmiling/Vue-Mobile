@@ -2,7 +2,7 @@
 export const Xtest1 = {
   state:{
     data1:0,
-    data2:'',
+    data2:100,
     data3:{},
     data4:[],
     data5:null,
@@ -10,6 +10,7 @@ export const Xtest1 = {
     todos: [
       { id: 1, text: '...', done: true },
       { id: 2, text: '...', done: true },
+      { id: 3, text: '...', done: false },
     ]
   },
   getters: {// 可以理解为 store 的计算属性
@@ -26,16 +27,15 @@ export const Xtest1 = {
   mutations: {//Mutation 必须是同步函数
     updateUserInfo(state,data) {
 　　　state.nickName = data.nickName;
-      console.log(data);
     },
     todos(state){
       state.todos = state.todos
     },
     increment (state,payload){
-      state.data1 += payload.amount
+      state.data1 += payload.amount;
     },
     minus (state,payload){
-      state.data1 -= payload.amount;
+      state.data2 -= payload.amount;
     }
   },
   actions:{
@@ -45,14 +45,10 @@ export const Xtest1 = {
       commit("updateUserInfo",data);
     },
     incrementP (context,data){
-      console.log(context)
-      console.log(data)
-      context.commit('increment');
+      context.commit('increment',data);
     },
     minusP ({commit,state},data){
-      commit('minus');
-      console.log(commit)
-      console.log(state)
+      commit('minus',data);
     }
 
     // 假设 getData() 和 getOtherData() 返回的是 Promise

@@ -39,6 +39,8 @@ const vuexTest = resolve => require(["Pages/testVuex/test.vue"],resolve);
 const es6 = resolve => require(["Pages/ES6Class/es6.vue"],resolve);
 
 const userinfo = resolve => require(["Pages/userinfo/userinfo.vue"],resolve);
+const dialog = resolve => require(["Pages/dialog.vue"],resolve);
+const clickOutside = resolve => require(["Pages/clickoutside/index.vue"],resolve);
 
 Vue.use(Router);
 
@@ -57,6 +59,14 @@ const router =  new Router({
     { // url输入未定义的router时,跳转到指定的首页
       path: "*",
       component: HelloWorld
+    },
+    { 
+      path: "/click-outside",
+      component: clickOutside
+    },
+    { 
+      path: "/dialog",
+      component: dialog
     },
     { // vue冲刷本身页面时,防止数据不更新,进行的空白页秒速跳转
       path:'/backfresh',

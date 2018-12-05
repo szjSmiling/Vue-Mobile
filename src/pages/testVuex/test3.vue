@@ -1,5 +1,5 @@
 <template>
-  <div id="my-vuex2">
+  <div id="my-vuex3">
     <head-top id="header" >
       <i slot="left" class="iconfont icon-back"></i>
       <span slot="title">szjSmiling</span>
@@ -7,22 +7,26 @@
     </head-top>
     <div class="content">
       <div class="top-distance">{{fullName}}</div>
+      <number-scroll :value="total"></number-scroll>
     </div>
   </div>
 </template>
 <script>
 import headTop from "@/components/head/header.vue";
+import numberScroll from '@/components/number-scroll.vue';
 import { Indicator, Toast } from "mint-ui";
 import { mapGetters } from 'vuex';
 import {mapActions} from "vuex";
 export default {
   components:{
-    headTop
+    headTop,
+    numberScroll,
   },
   data(){
     return {
-      firstName: 'Foo',
-      lastName: 'Bar'
+      total:0,
+      firstName: 'Sun',
+      lastName: 'Rain'
     }
   },
   computed: {
@@ -42,16 +46,19 @@ export default {
   },
   methods: {
     setDate(){
-      this.fullName = "John Doe";
+      this.fullName = "Jelly Sunshine";
+      let str = this.fullName.substr(0,2)+'****'+this.fullName.substr(-4);
+      console.log(str);
     }
   },
   mounted () {
     this.setDate();
+    this.total = 1000;
   }
 }
 </script>
 <style lang="less" scoped>
-#my-vuex2{
+#my-vuex3{
   .top-distance{height:0.5rem;}
   .content{
     font-size: 0.2rem;

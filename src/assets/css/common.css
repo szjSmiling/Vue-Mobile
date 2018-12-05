@@ -77,6 +77,17 @@ select {
   display: table;
   content: "";
 }
+.clearafter{
+  zoom: 1;
+}
+.clearafter:after{
+  display:block;
+  width:0;
+  height:0;
+  content: "";
+  clear: both;
+  visibility:hidden;
+}
 .clearm {
   display: table;
   content: "";
@@ -223,7 +234,7 @@ i {
   -webkit-animation-duration: 0.5s;
   animation-duration: 0.5s;
   animation-fill-mode: both;
-  webkit-animation-play-state: both;
+  -webkit-animation-play-state: both;
 }
 
 .fadeIn {
@@ -385,7 +396,20 @@ i {
   animation-name: slideInRight;
 }
 
+.slideInUp{
+  animation-name: slideInUp;
+}
 @keyframes slideInUp {
+  from {
+    transform: translate3d(0, 100%, 0);
+    visibility: visible;
+  }
+
+  to {
+    transform: translate3d(0, 0, 0);
+  }
+}
+@-webkit-keyframes slideInUp {
   from {
     transform: translate3d(0, 100%, 0);
     visibility: visible;
@@ -411,11 +435,7 @@ i {
   }
 }
 
-.slideOutLeft {
-  animation-name: slideOutLeft;
-}
-
-@keyframes slideOutRight {
+@-webkit-keyframes slideOutRight {
   from {
     transform: translate3d(0, 0, 0);
   }
@@ -429,8 +449,20 @@ i {
 .slideOutRight {
   animation-name: slideOutRight;
 }
-
+.slideOutUp{
+  animation-name: slideOutUp;
+}
 @keyframes slideOutUp {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  
+  to {
+    visibility: hidden;
+    transform: translate3d(0, 100%, 0);
+  }
+}
+@-webkit-keyframes slideOutUp {
   from {
     transform: translate3d(0, 0, 0);
   }
