@@ -32,8 +32,8 @@ import Clipboard from 'clipboard';// 拷贝复制
 import 'font-awesome/css/font-awesome.css';
 import VueUploadComponent from 'vue-upload-component';
 import uploader from 'vue-simple-uploader';
-import md5 from 'js-md5';
-import base64 from 'js-base64';
+// import md5 from 'js-md5';
+// import base64 from 'js-base64';
 import filters from "./filter/filter.js";
 import iOSBridge from './request/bridge.js';
 
@@ -77,8 +77,8 @@ Vue.component("file-upload",VueUploadComponent);
 Vue.use(uploader);
 
 Vue.prototype.$clipboard = Clipboard;
-Vue.prototype.$md5 = md5;
-Vue.prototype.$Base64 = base64.Base64;
+// Vue.prototype.$md5 = md5;
+// Vue.prototype.$Base64 = base64.Base64;
 Vue.prototype.$axios = axios;
 Vue.prototype.$bridge = iOSBridge;
 Vue.filter("formatDate", filters.formatDate);

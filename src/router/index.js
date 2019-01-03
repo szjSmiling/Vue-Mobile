@@ -56,7 +56,8 @@ const router =  new Router({
         keepAlive: true
       }
     },
-    { // url输入未定义的router时,跳转到指定的首页
+    // url输入未定义的router时,跳转到指定的首页
+    { 
       path: "*",
       component: HelloWorld
     },
@@ -68,7 +69,7 @@ const router =  new Router({
       path: "/dialog",
       component: dialog
     },
-    { // vue冲刷本身页面时,防止数据不更新,进行的空白页秒速跳转
+    { // vue重刷本身页面时,防止数据不更新,进行的空白页秒速跳转
       path:'/backfresh',
       component:back
     },

@@ -120,8 +120,8 @@ export default {
     for (let i = 1976; i <= Number(new Date().getFullYear());i++) {
       this.arr.push(i);
     }
-    console.log("base64: "+this.$Base64.encode("123156102313"));
-    console.log("md5: "+this.$md5("123156102313"));
+    // console.log("base64: "+this.$Base64.encode("123156102313"));
+    // console.log("md5: "+this.$md5("123156102313"));
     let arr = this.arr.reverse();
     this.slots[0].values = arr;
     this.slots[2].values = arr;
