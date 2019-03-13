@@ -15,7 +15,7 @@
       <span class="icon_class2" @click="$router.push('/es6-class')">封装Class2</span>
       <span class="icon_class3" @click="$router.push('/es6-class')">封装Class3</span>
       <span class="icon_class4" @click="$router.push('/es6-class')">封装Class4</span>
-      <p>距离印度的中秋8月15还剩</p>
+      <p>房租到期印度时间还剩</p>
       <div class="count-down">
         <span class="child child0" :style="timeBg">{{time.day1}}</span>
         <span class="child child00" :style="timeBg">{{time.day2}}</span>
@@ -60,75 +60,23 @@
         </mt-button>
       </li>
     </ul>
-    <mt-swipe class="mint-swipe" :auto="isPlay" @change="handleChange">
-      <i class="fa fa-chevron-left" style="font-size:50px;height:30px;position:absolute;z-index:6;color:#fff;left:0;top:0;bottom:0;margin:auto;cursor:pointer;" @click="leftSwiper"></i>
-     <mt-swipe-item :class="{'is-active':i == index}" v-if="bannerList?bannerList:false" v-for="(item,i) in bannerList" :key="i">
-      <a href="javascript:;">
-        <img :src="item" alt="szj-picture" title="szj try it">
-      </a>
-     </mt-swipe-item>
-    </mt-swipe>
-    <div class="content">
-      <ol class="cont-ol">
-        <li v-for="item in textList" :key="item.id">
-          <p>{{item.id+1}}. {{item.title}}</p>
-          <p>{{item.content}}</p>
-          <mt-button class="close" @click="closeRow(item.id)" type="danger">
-            <i class="iconfont icon-close"></i>
-          </mt-button>
-        </li>
-      </ol>
-    </div>
+    <ul class="child-list flex content-start align-items-center">
+      <li @click="$router.push('/swiper')">swiper</li>
+      <li>swiper</li>
+      <li>swiper</li>
+      <li>swiper</li>
+      <li>swiper</li>
+      <li>swiper</li>
+      <li>swiper</li>
+      <li>swiper</li>
+      <li>swiper</li>
+      <li>swiper</li>
+    </ul>
+    <div class="content"></div>
     <foot-end></foot-end>
   </div>
 </template>
-<script>
-  // function ScreenSaver(settings){     
-  //   this.settings = settings;     
-  //   this.nTimeout = this.settings.timeout;     
-                    
-  //   document.body.screenSaver = this;     
-  //   // link in to body events     
-  //   document.body.onmousemove = ScreenSaver.prototype.onevent;     
-  //   document.body.onmousedown = ScreenSaver.prototype.onevent;     
-  //   document.body.onkeydown = ScreenSaver.prototype.onevent;     
-  //   document.body.onkeypress = ScreenSaver.prototype.onevent;     
-            
-  //   var pThis = this;     
-  //   var f = function(){pThis.timeout();}     
-  //   this.timerID = window.setTimeout(f, this.nTimeout);     
-  // }     
-	// ScreenSaver.prototype.timeout = function(){     
-	//     if ( !this.saver ){
-	//         window.location = 'www.baidu.com';   
-	//     }     
-	// }     
-	// ScreenSaver.prototype.signal = function(){     
-	//     if ( this.saver ){     
-	//         this.saver.stop();     
-	//     }     
-	         
-	//     window.clearTimeout(this.timerID);     
-	         
-	//     var pThis = this;     
-	//     var f = function(){pThis.timeout();}     
-	//     this.timerID = window.setTimeout(f, this.nTimeout);     
-	// }     
-	    
-	// ScreenSaver.prototype.onevent = function(e){     
-	//     this.screenSaver.signal();     
-	// }     
-	    
-	    
-	// var saver;     
-	// function initScreenSaver(){     
-	//     //blort;     
-	//     saver = new ScreenSaver({timeout:4000});   //无动作时间  
-	// }     
-	// window.onload = function(){     
-	//   initScreenSaver();     
-	// }     
-
+<script> 
 import headTop from "@/components/head/header.vue";
 import footEnd from "@/components/foot/footer.vue";
 import { Indicator, Toast, Swipe, SwipeItem } from "mint-ui";
@@ -143,18 +91,11 @@ export default {
   data() {
     return {
       link:'',
-      isPlay:0,
-      index:0,
-      isauto:false,
       timer:null,
       date:"Sunning",
       popupVisible:false,
       img: require("../../assets/images/logo.png"),
       msg: "Welcome to Your Vue.js App",
-      bannerList:[
-        require('Assets/images/banner/b_flight1.jpg'),require('Assets/images/banner/b_flight2.jpg'),
-        require('Assets/images/banner/b_flight3.jpg'),require('Assets/images/banner/b_flight4.jpg'),
-      ],
       time:{
         hour1:0, hour2:0,min1:0,
         min2:0,sec1:0,sec2:0,day1:0,day2:0
@@ -163,41 +104,13 @@ export default {
         "background-image":'url('+require('../../assets/images/time-bg.png')+')',
         "background-size":"100% 100%",
         "background:;-repeat":"no-repeat",
-      },
-      textList: [
-        { id: 0, title: "首先", content: "first" },
-        { id: 1, title: "其次", content: "second" },
-        { id: 2, title: "然后", content: "third" },
-        { id: 3, title: "之后", content: "fourth" },
-        { id: 4, title: "最后", content: "fifth" }
-      ]
+      }
     };
   },
   mounted() {
-    // let time = new Date();
-    // this.date = time.getFullYear()+'/'+(time.getMonth()+1)+'/'+time.getDate();
     this.link = location.href;
-    // this.copyBtn = new this.$clipboard('#copyBtn',{
-    //   container: document.getElementsByClassName('.mint-button-text')
-    // });
   },
   methods: {
-    autoPlay(){
-      if(this.isPlay != 0){
-        this.isPlay == 4000;
-      }
-    },
-    leftSwiper(){
-      this.isauto = false,
-      this.isPlay = 0;
-      this.index ++;
-      if(this.index > 3){
-        this.index = 0;
-      }
-    },
-    handleChange(index){
-      this.index = index;
-    },
     showMenu(){
       Toast({
         message:"个人信息",
@@ -243,13 +156,8 @@ export default {
         });
       });
     },
-    closeRow(id) {
-      this.textList = this.textList.filter(val => {
-        return val.id != id ;
-      });
-    },
 	  datetime_to_unix(){//将指定时间转化成时间戳
-      var date='2018-12-31 00:00:00';//设置到期时间
+      var date='2019-04-17 00:00:00';//设置到期时间
       date = new Date(Date.parse(date.replace(/-/g, '/')));
       date = date.getTime();
       return parseInt(date/1000);
@@ -313,7 +221,6 @@ export default {
     },
   },
   created() {
-    //定时执行，每秒刷新
     this.GetRTime();
   },
 };
@@ -370,14 +277,6 @@ export default {
   }
   a {
     color: #42b983;
-  }
-  .mint-swipe {
-    height:2.2rem;
-    .mint-swipe-items-wrap > div{z-index:5;}
-    a,img{
-      width: 100%;
-      height:100%;
-    }
   }
   .content {
     padding: 0 0.15rem 1rem;
@@ -454,5 +353,30 @@ export default {
     cursor: pointer;
     color:#0b9d78;
   }
+
+  .child-list{
+    flex-wrap: wrap;
+    margin:0 0 0.1rem;
+    li{
+      width:0.8rem;
+      height:0.4rem;
+      line-height:0.4rem;
+      font-size: 0.2rem;
+      color:#f00;
+      text-align:center;
+      background: #eee;
+      border-radius:4px;
+      cursor: pointer;
+      margin-right:0.11rem;
+      margin-bottom:0.1rem;
+    }
+    li:nth-child(4n+1){ margin-left:0.1rem; }
+    li:nth-child(4n){ margin-right:0; }
+    li:active{
+      color:#fff;
+      background: #0b9d78;
+    }
+  }
+  
 }
 </style>

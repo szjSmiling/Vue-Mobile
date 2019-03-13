@@ -28,6 +28,7 @@ export default {
     position: fixed;
     bottom: 0;
     background-color: #0b9d78;
+    z-index: 10;
   .foot-content{
     display: table-cell;
     vertical-align: middle;

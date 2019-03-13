@@ -5,7 +5,6 @@ import {Indicator} from 'mint-ui';
 const HelloWorld = resolve => require(['Pages/home/HelloWorld.vue'],resolve);
 const back = resolve => require(['Pages/home/back.vue'],resolve);
 const PDF = resolve => require(['Pages/home/showPDF.vue'],resolve);
-const swiper = resolve => require(['Pages/home/swiper.vue'],resolve);
 
 const activity = resolve => require(['Pages/activity/activity.vue'],resolve);
 const actDetails = resolve => require(['Pages/activity/actDetails.vue'],resolve);
@@ -41,6 +40,9 @@ const es6 = resolve => require(["Pages/ES6Class/es6.vue"],resolve);
 const userinfo = resolve => require(["Pages/userinfo/userinfo.vue"],resolve);
 const dialog = resolve => require(["Pages/dialog.vue"],resolve);
 const clickOutside = resolve => require(["Pages/clickoutside/index.vue"],resolve);
+// 功能性页面
+const swiperPage = resolve => require(["Pages/swiper/index.vue"],resolve);
+
 
 Vue.use(Router);
 
@@ -73,13 +75,14 @@ const router =  new Router({
       path:'/backfresh',
       component:back
     },
+    // 功能性页面
+    {
+      path:"/swiper",
+      component: swiperPage
+    },
     {
       path:'/PDF',
       component:PDF
-    },
-    {
-      path:'/swiper',
-      component:swiper
     },
     {
       path:'/activity',

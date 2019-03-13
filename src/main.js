@@ -36,6 +36,7 @@ import uploader from 'vue-simple-uploader';
 // import base64 from 'js-base64';
 import filters from "./filter/filter.js";
 import iOSBridge from './request/bridge.js';
+import 'swiper/dist/css/swiper.min.css';
 
 // import fontawesome from '@fortawesome/fontawesome';
 

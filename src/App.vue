@@ -125,9 +125,9 @@ select {
   font-size: 0.16rem;
 }
 
-.swiper-slide {
-  width: 100% !important;
-}
+// .swiper-slide {
+//   width: 100% !important;
+// }
 
 .mint-loadmore{
   .mint-loadmore-top{
