@@ -15,7 +15,7 @@
       <span class="icon_class2" @click="$router.push('/es6-class')">封装Class2</span>
       <span class="icon_class3" @click="$router.push('/es6-class')">封装Class3</span>
       <span class="icon_class4" @click="$router.push('/es6-class')">封装Class4</span>
-      <p>房租到期印度时间还剩</p>
+      <p>房租到期印度时间还剩<i class="s-icon s-icon-calendar"></i></p>
       <div class="count-down">
         <span class="child child0" :style="timeBg">{{time.day1}}</span>
         <span class="child child00" :style="timeBg">{{time.day2}}</span>
@@ -101,7 +101,7 @@ export default {
         min2:0,sec1:0,sec2:0,day1:0,day2:0
       },
       timeBg:{
-        "background-image":'url('+require('../../assets/images/time-bg.png')+')',
+        "background-image":'url('+require('Assets/images/time-bg.png')+')',
         "background-size":"100% 100%",
         "background:;-repeat":"no-repeat",
       }
@@ -157,7 +157,7 @@ export default {
       });
     },
 	  datetime_to_unix(){//将指定时间转化成时间戳
-      var date='2019-04-17 00:00:00';//设置到期时间
+      var date='2019-10-01 00:00:00';//设置到期时间
       date = new Date(Date.parse(date.replace(/-/g, '/')));
       date = date.getTime();
       return parseInt(date/1000);

@@ -11,6 +11,25 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin')
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 
+/* sprites */
+var SpritesmithPlugin = require('webpack-spritesmith');
+var templateFunction = function (data) {
+  const shared = '.s-icon { display:inline-block;background-image: url(I); }'
+    .replace('I', data.sprites[0].image);
+  // 注意：此处默认图标使用的是二倍图
+  const perSprite = data.sprites.map(function (sprite) {
+    return '.s-icon-N { width: Wpx;height: Hpx;background-position: Xpx Ypx;background-size: SWpx SHpx; }'
+    .replace(/N/g, sprite.name)
+    .replace(/SW/g, sprite.width / 2)
+    .replace(/SH/g, sprite.height / 2)
+    .replace(/W/g, sprite.width / 2)
+    .replace(/H/g, sprite.height / 2)
+    .replace(/X/g, sprite.offset_x / 2)
+    .replace(/Y/g, sprite.offset_y / 2);
+  }).join('\n');
+  return shared + '\n' + perSprite;
+}
+
 const env = process.env.NODE_ENV === 'testing'
   ? require('../config/test.env')
   : require('../config/prod.env')
@@ -30,7 +49,30 @@ const webpackConfig = merge(baseWebpackConfig, {
     chunkFilename: utils.assetsPath('js/[id].[chunkhash].js')
   },
   plugins: [
-    // http://vuejs.github.io/vue-loader/en/workflow/production.html
+    new SpritesmithPlugin({
+      src: { // 目标小图标
+        cwd: path.resolve(__dirname, '../src/assets/sprites/images'),
+        glob: '*.png'
+      },
+      target: { // 输出雪碧图文件及样式文件
+        image: path.resolve(__dirname, '../src/assets/sprites/sprite.png'),
+        css: [
+          [path.resolve(__dirname, '../src/assets/sprites/sprite.css'), {
+            format: 'retinaOnly'
+          }]
+        ]
+      },
+      apiOptions: { // 样式文件中调用雪碧图地址写法
+        cssImageRef: '../src/assets/sprites/sprite.png'
+      },
+      spritesmithOptions: {
+        padding: 4,
+        algorithm: 'top-down'
+      },
+      customTemplates: {
+        'retinaOnly': templateFunction
+      }
+    }),
     new webpack.DefinePlugin({
       'process.env': env
     }),
@@ -43,25 +85,15 @@ const webpackConfig = merge(baseWebpackConfig, {
       sourceMap: config.build.productionSourceMap,
       parallel: true
     }),
-    // extract css into its own file
-    new ExtractTextPlugin({
+    new ExtractTextPlugin({ // extract css into its own file
       filename: utils.assetsPath('css/[name].[contenthash].css'),
-      // Setting the following option to `false` will not extract CSS from codesplit chunks.
-      // Their CSS will instead be inserted dynamically with style-loader when the codesplit chunk has been loaded by webpack.
-      // It's currently set to `true` because we are seeing that sourcemaps are included in the codesplit bundle as well when it's `false`, 
-      // increasing file size: https://github.com/vuejs-templates/webpack/issues/1110
       allChunks: true,
     }),
-    // Compress extracted CSS. We are using this plugin so that possible
-    // duplicated CSS from different components can be deduped.
     new OptimizeCSSPlugin({
       cssProcessorOptions: config.build.productionSourceMap
         ? { safe: true, map: { inline: false } }
         : { safe: true }
     }),
-    // generate dist index.html with correct asset hash for caching.
-    // you can customize output by editing /index.html
-    // see https://github.com/ampedandwired/html-webpack-plugin
     new HtmlWebpackPlugin({
       filename: process.env.NODE_ENV === 'testing'
         ? 'index.html'
@@ -72,8 +104,6 @@ const webpackConfig = merge(baseWebpackConfig, {
         removeComments: true,
         collapseWhitespace: true,
         removeAttributeQuotes: true
-        // more options:
-        // https://github.com/kangax/html-minifier#options-quick-reference
       },
       // necessary to consistently work with multiple chunks via CommonsChunkPlugin
       chunksSortMode: 'dependency'
@@ -96,24 +126,17 @@ const webpackConfig = merge(baseWebpackConfig, {
         )
       }
     }),
-    // extract webpack runtime and module manifest to its own file in order to
-    // prevent vendor hash from being updated whenever app bundle is updated
     new webpack.optimize.CommonsChunkPlugin({
       name: 'manifest',
       minChunks: Infinity
     }),
-    // This instance extracts shared chunks from code splitted chunks and bundles them
-    // in a separate chunk, similar to the vendor chunk
-    // see: https://webpack.js.org/plugins/commons-chunk-plugin/#extra-async-commons-chunk
     new webpack.optimize.CommonsChunkPlugin({
       name: 'app',
       async: 'vendor-async',
       children: true,
       minChunks: 3
     }),
-
-    // copy custom static assets
-    new CopyWebpackPlugin([
+    new CopyWebpackPlugin([ // copy custom static assets
       {from: path.resolve(__dirname, '../static'),to: config.build.assetsSubDirectory,ignore: ['.*']},
       {from: path.resolve(__dirname, "../bridge.html"), to:path.resolve(__dirname, "../dist/bridge.html")}
     ])
@@ -122,7 +145,6 @@ const webpackConfig = merge(baseWebpackConfig, {
 
 if (config.build.productionGzip) {
   const CompressionWebpackPlugin = require('compression-webpack-plugin')
-
   webpackConfig.plugins.push(
     new CompressionWebpackPlugin({
       asset: '[path].gz[query]',

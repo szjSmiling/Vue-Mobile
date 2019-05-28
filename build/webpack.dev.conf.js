@@ -12,6 +12,24 @@ const portfinder = require('portfinder')
 
 const HOST = process.env.HOST
 const PORT = process.env.PORT && Number(process.env.PORT)
+/* sprites */
+var SpritesmithPlugin = require('webpack-spritesmith');
+var templateFunction = function (data) {
+  const shared = '.s-icon { display:inline-block;background-image: url(I); }'
+    .replace('I', data.sprites[0].image);
+  // 注意：此处默认图标使用的是二倍图
+  const perSprite = data.sprites.map(function (sprite) {
+    return '.s-icon-N { width: Wpx;height: Hpx;background-position: Xpx Ypx;background-size: SWpx SHpx; }'
+    .replace(/N/g, sprite.name)
+    .replace(/SW/g, sprite.width / 2)
+    .replace(/SH/g, sprite.height / 2)
+    .replace(/W/g, sprite.width / 2)
+    .replace(/H/g, sprite.height / 2)
+    .replace(/X/g, sprite.offset_x / 2)
+    .replace(/Y/g, sprite.offset_y / 2);
+  }).join('\n');
+  return shared + '\n' + perSprite;
+}
 
 const devWebpackConfig = merge(baseWebpackConfig, {
   module: {
@@ -43,6 +61,31 @@ const devWebpackConfig = merge(baseWebpackConfig, {
     }
   },
   plugins: [
+    new SpritesmithPlugin({
+      src: { // 目标小图标
+        cwd: path.resolve(__dirname, '../src/assets/sprites/images'),
+        glob: '*.png'
+      },
+      target: { // 输出雪碧图文件及样式文件
+        image: path.resolve(__dirname, '../src/assets/sprites/sprite.png'),
+        css: [
+          [path.resolve(__dirname, '../src/assets/sprites/sprite.css'), {
+            // 引用自己的模板
+            format: 'retinaOnly'
+          }]
+        ]
+      },
+      customTemplates: {
+        'retinaOnly': templateFunction
+      },
+      apiOptions: { // 样式文件中调用雪碧图地址写法
+        cssImageRef: '../src/assets/sprites/sprite.png'
+      },
+      spritesmithOptions: {
+        padding: 4, // 让合成的每个图片有一定的距离
+        // algorithm: 'top-down'
+      }
+    }),
     new webpack.DefinePlugin({
       'process.env': require('../config/dev.env')
     }),
