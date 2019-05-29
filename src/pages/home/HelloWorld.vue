@@ -62,7 +62,7 @@
     </ul>
     <ul class="child-list flex content-start align-items-center">
       <li @click="$router.push('/swiper')">swiper</li>
-      <li>swiper</li>
+      <li @click="$router.push('/minxin')">minxin</li>
       <li>swiper</li>
       <li>swiper</li>
       <li>swiper</li>
@@ -142,7 +142,6 @@ export default {
     copyClick(){
       let copyBtn = new this.$clipboard('#copyBtn');
       copyBtn.on('success', function(e) {
-        console.log(e);
         Toast({
           message: "复制成功！",
           duration: 1200

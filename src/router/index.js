@@ -42,6 +42,7 @@ const dialog = resolve => require(["Pages/dialog.vue"],resolve);
 const clickOutside = resolve => require(["Pages/clickoutside/index.vue"],resolve);
 // 功能性页面
 const swiperPage = resolve => require(["Pages/swiper/index.vue"],resolve);
+const minxin = resolve => require(["Pages/minxin/minxin.vue"],resolve);
 
 
 Vue.use(Router);
@@ -79,6 +80,10 @@ const router =  new Router({
     {
       path:"/swiper",
       component: swiperPage
+    },
+    {
+      path:"/minxin",
+      component: minxin
     },
     {
       path:'/PDF',
