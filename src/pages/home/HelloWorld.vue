@@ -63,6 +63,7 @@
     <ul class="child-list flex content-start align-items-center">
       <li @click="$router.push('/swiper')">swiper</li>
       <li @click="$router.push('/minxin')">minxin</li>
+      <li @click="$router.push('/slot')">slot</li>
       <li>swiper</li>
       <li>swiper</li>
       <li>swiper</li>

@@ -194,7 +194,10 @@ const router =  new Router({
     {
       path: "/es6",
       component: es6
-    },
+    },{
+      path: '/slot',
+      component: resolve => require(["Pages/slot/slot.vue"], resolve)
+    }
   ]
 });
 router.beforeEach((to, from, next) => {

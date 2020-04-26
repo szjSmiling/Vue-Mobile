@@ -86,21 +86,43 @@ Vue.filter("formatDate", filters.formatDate);
 AxiosConfig.init();
 FontUtil.init();
 /* eslint-disable no-new */
-var vm = new Vue({
+
+Vue.component('smart-list', { /* 函数式组件 */
+  functional: true,
+  props: {
+    items: {
+      type: [String, Object, Function],
+      required: true
+    },
+    isOrdered: Boolean
+  },
+  render: function (createElement, context) {
+    console.log(context.slots().default)
+    function appropriateList () {
+      if (context.props.isOrdered) return 'div'
+      return 'p'
+    }
+    return createElement(
+      appropriateList(),
+      context.data,
+      [ // context.children,
+        createElement('p', '我是函数式组件的 p1'),
+        createElement('p', '我是函数式组件的 p2'),
+        ...context.slots().default,
+        ...context.slots().foo,
+      ],
+    )
+  }
+})
+
+new Vue({
   el: '#app',
   router,
   store,
-  methods:{
-    onLoadFinish() {
-      try {
-        window.heg && window.heg.onViewShow();
-      } catch (e) {
-        // statements
-      }
-    },
-  },
-  mounted() {
-    this.onLoadFinish();
-  },
-  render: h => h(App)
+  render: h => {
+    return h(App)
+  }
+});
+new Vue({
+  el: '#app2',
 });

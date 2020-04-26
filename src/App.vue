@@ -1,16 +1,25 @@
 <template>
-  <div id="app">
-    <keep-alive>
+  <div >
+    <div id="app">
+      <keep-alive>
         <router-view v-if="$route.meta.keepAlive"></router-view>
-    </keep-alive>
-    <router-view v-if="!$route.meta.keepAlive"></router-view>
+      </keep-alive>
+      <router-view v-if="!$route.meta.keepAlive"></router-view>
+    </div>
+    <div id="app2">
+      <smart-list :items="items" :isOrdered="true">
+        <h1>我是组件内的子节点!</h1>
+        <p slot="foo">函数式组件内的具名 slot: foo</p>
+      </smart-list>
+    </div>
   </div>
 </template>
 <script>
 export default {
-  name: "app",
-  data() {
-    return {};
+  data () {
+    return {
+      items: 'div'
+    };
   },
   created: function() {
     console.log("the hook of created is done!");
@@ -30,8 +39,13 @@ export default {
 @import "./assets/css/common.css";
 @import "./assets/css/reset.css";
 @import './assets/sprites/sprite.css';
-
-#app {
+#app2{
+  font-size: 0.2rem;
+  * {
+    padding: 0.02rem 0;
+  }
+}
+#app, #app2 {
   font-family: Helvetica, Arial, sans-serif, "Avenir";
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
