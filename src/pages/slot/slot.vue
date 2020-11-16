@@ -12,6 +12,12 @@
         <p>父组件传入的 content: {{fromChild}}</p>
       </template>
     </test-slot>
+    <div class="scroll-box">
+      <div class="scroll-test">
+        <div class="scroll-left" @click="scrollToRight"></div>
+        <div class="scroll-right" @click="scrollToLeft"></div>
+      </div>
+    </div>
   </div>
 </template>
 <script>
@@ -19,6 +25,22 @@ import testSlot from "Components/slot.vue"
 export default {
   components: {
     testSlot,
+  },
+  methods: {
+    scrollToRight () {
+      this.$nextTick(() => {
+        let cover = document.getElementsByClassName('scroll-box')[0]
+        let box = document.getElementsByClassName('scroll-test')[0]
+        cover.scrollLeft = box.clientWidth;
+      })
+    },
+    scrollToLeft () {
+      this.$nextTick(() => {
+        let cover = document.getElementsByClassName('scroll-box')[0]
+        let box = document.getElementsByClassName('scroll-test')[0]
+        cover.scrollLeft = 0;
+      })
+    },
   },
 }
 </script>
@@ -29,5 +51,31 @@ export default {
   h4{
     font-size: 0.28rem;
   }
+}
+
+.scroll-box{
+  padding: 0.1rem 0.2rem;
+  width: 100%;
+  height: 200px;
+  background: #ddd;
+  overflow: scroll;
+}
+.scroll-test{
+  width: 160%;
+  height: 100%;
+  background: #ddd;
+}
+.scroll-left{
+  width: 45%;
+  height: 100%;
+  background: #aaa;
+  float: left;
+}
+.scroll-right{
+  width: 45%;
+  height: 100%;
+  background: #aaa;
+  float: right;
+  margin-right: 0.2rem;
 }
 </style>

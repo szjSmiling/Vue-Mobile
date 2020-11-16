@@ -1,6 +1,9 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-import {Indicator} from 'mint-ui';
+import { store } from "@/vuex";
+import { Indicator } from 'mint-ui';
+import ThirdAuthRoutes from '@/pages/ThirdAuth/routes';
+import PreventBrowerBack from '@/pages/PreventBrowerBack/routes'
 
 const HelloWorld = resolve => require(['Pages/home/HelloWorld.vue'],resolve);
 const back = resolve => require(['Pages/home/back.vue'],resolve);
@@ -50,13 +53,15 @@ Vue.use(Router);
 const router =  new Router({
   mode: "history",//如果不更改设置,增加mode;vue会默认使用hash模式,该模式下会将路径格式化为#开头
   routes: [
+    ...ThirdAuthRoutes,
+    ...PreventBrowerBack,
     {
       path: '/',
       name: 'HelloWorld',
       component: HelloWorld,
       // redirect: "/HelloWorld",
       meta: {
-        keepAlive: true
+        keepAlive: false
       }
     },
     // url输入未定义的router时,跳转到指定的首页
@@ -202,6 +207,14 @@ const router =  new Router({
 });
 router.beforeEach((to, from, next) => {
   Indicator.close();
+  let allowBack = store.state.allowBack
+  if (to.meta.allowBack !== undefined) {
+    allowBack = to.meta.allowBack
+  }
+  if (!allowBack) {
+    // window.history.pushState(null, null, location.origin + to.fullPath)
+  }
   next();
+  store.commit("AllowBack/UPDATE_ALLOWBACK", to.meta.allowBack)
 });
 export default router;

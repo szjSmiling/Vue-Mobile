@@ -1,14 +1,14 @@
 <template>
-	<div class="header flex space-between" v-if="showHeader">
-		<div class="head-ico head-ico1 flex align-items-center" @click="navigate">
-			<slot name="left"></slot>
-		</div>
-		<div class="head-title flex align-items-center" @click="navigate1">
-			<slot name="title"></slot>
-		</div>
-		<div class="user head-ico flex align-items-center content-end">
-			<slot name="right"></slot>
-		</div>
+	<div class="new-header flex space-between" v-if="showHeader">
+		<div class="new-header_left" @click="navigate">
+      <slot name="left"></slot>
+    </div>
+    <div class="new-header_title" @click="navigate1">
+      <slot name="title"></slot>
+    </div>
+    <div class="new-header_right">
+      <slot name="right"></slot>
+    </div>
 	</div>
 </template>
 <script>
@@ -59,47 +59,37 @@ export default {
 };
 </script>
 <style lang='less' scoped>
-.header {
+.new-header{
+  box-sizing: border-box;
   width: 100%;
-  height: 0.5rem;
-  line-height: 0.5rem;
+  color: #111;
+  height: 2.4rem;
+  line-height: 2.4rem;
+  background: #fff;
+  box-shadow: 1px 0 5px rgba(0,0,0, 0.5);
   position: fixed;
   top: 0;
-  z-index: 10;
-  background: #0b9d78;
-  .title {
-    color: #fff;
-  }
-  .head-ico {
-    width: 0.6rem;
-    i {
-      padding: 0 0.2rem;
-      color: #fff;
-      display: block;
-      font-size: 0.2rem;
-      line-height: 0.5rem;
-    }
-  }
-  .user {
-    line-height:0.5rem;
-    i {
-      padding: 0 0.2rem;
+  left: 0;
+  z-index: 20;
+}
+.new-header_title{
+  width: 100%;
+  text-align: center;
+}
 
-      color: #fff;
-    }
-    img {
-      padding: 0.2rem;
-      width: 0.8rem;
-      flex: 0 0 0.5rem;
-      display: block;
-    }
-  }
-  .head-title {
-    font-size: 0.22rem;
-    height: 0.5rem;
-    line-height: 0.5rem;
-    color: #fff;
-    // margin-left: -0.5rem;
-  }
+.newHeaderSide () {
+  padding: 0 1rem;
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.new-header_left{
+  .newHeaderSide();
+  left: 0;
+}
+.new-header_right{
+  .newHeaderSide();
+  right: 0;
 }
 </style>

@@ -11,7 +11,7 @@
       <img :src="img" alt="" @click="$router.push('/')">
       <img class="icon_vuex" @click="$router.push('/vuex-test')" :src="require('../../assets/images/vuex/vuex.png')" alt="">
       <span class="icon_class" @click="$router.push('/es6')">封装Class</span>
-      <span class="icon_class1" @click="$router.push('/es6-class')">封装Class1</span>
+      <span class="icon_class1" @click="$router.push('/prevent-brower-back')">allowBack</span>
       <span class="icon_class2" @click="$router.push('/es6-class')">封装Class2</span>
       <span class="icon_class3" @click="$router.push('/es6-class')">封装Class3</span>
       <span class="icon_class4" @click="$router.push('/es6-class')">封装Class4</span>
@@ -228,21 +228,13 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="less">
 #hello {
-  padding:0.5rem 0 0.58rem;
-  #header{
-    .icon-right{
-      font-size: 0.25rem;
-    }
-  }
-  h2 {
-    padding: 0.1rem 0;
-  }
+  padding: 2.4rem 0 0.58rem;
   ul,li {
     list-style-type: none;
   }
   .count-down{
     margin-bottom:0.1rem;
-    font-size:0.16rem;
+    font-size: 0.16rem;
     color:#333;
     span{
       width: 0.3rem;
@@ -315,34 +307,34 @@ export default {
     width:0.6rem;
     position: absolute;
     left: 0.2rem;
-    top:0.8rem;
+    top:1.8rem;
     cursor: pointer;
   }
   .icon_class{
     position: absolute;
     left: 0.2rem;
-    top:1.3rem;
+    top: 2.8rem;
     cursor: pointer;
     color:#0f0;
   }
   .icon_class1{
     position: absolute;
     right: 0.2rem;
-    top:1rem;
+    top: 0.8rem;
     cursor: pointer;
     color:#0f0;
   }
   .icon_class2{
     position: absolute;
     left: 0.2rem;
-    top:1.6rem;
+    top: 1.6rem;
     cursor: pointer;
     color:#00f;
   }
   .icon_class3{
     position: absolute;
     right: 0.2rem;
-    top:1.3rem;
+    top: 2.8rem;
     cursor: pointer;
     color:#f00;
   }
@@ -358,10 +350,8 @@ export default {
     flex-wrap: wrap;
     margin:0 0 0.1rem;
     li{
-      width:0.8rem;
-      height:0.4rem;
-      line-height:0.4rem;
-      font-size: 0.2rem;
+      padding: 0.3rem;
+      font-size: 1rem;
       color:#f00;
       text-align:center;
       background: #eee;

@@ -1,44 +1,56 @@
 <template>
   <div >
     <div id="app">
+      <head-com>
+        <i class="iconfont icon-back" slot="left"></i>
+        <div slot="title">Development</div>
+        <i slot="right"></i>
+      </head-com>
       <keep-alive>
         <router-view v-if="$route.meta.keepAlive"></router-view>
       </keep-alive>
       <router-view v-if="!$route.meta.keepAlive"></router-view>
     </div>
-    <div id="app2">
+    <!-- <div id="app2">
       <smart-list :items="items" :isOrdered="true">
         <h1>我是组件内的子节点!</h1>
         <p slot="foo">函数式组件内的具名 slot: foo</p>
       </smart-list>
-    </div>
+    </div> -->
   </div>
 </template>
 <script>
+import HeadCom from '@/components/head/header.vue'
+
 export default {
+  components: {
+    HeadCom,
+  },
   data () {
     return {
       items: 'div'
     };
   },
-  created: function() {
+  created () {
     console.log("the hook of created is done!");
   },
-  mounted: function() {
+  mounted () {
     console.log("the hook of mounted is done!");
   },
-  activated: function() {
+  activated () {
     console.log("after keep-alive,refresh page activated is done!");
   },
-  deactivated: function() {
+  deactivated () {
+    window.removeEventListener('popstate', () => { console.log('000') });
     console.log("after keep-alive,refresh page deactivated is done!");
-  }
+  },
 };
 </script>
 <style lang="less">
 @import "./assets/css/common.css";
 @import "./assets/css/reset.css";
 @import './assets/sprites/sprite.css';
+*{ box-sizing: border-box;}
 #app2{
   font-size: 0.2rem;
   * {
@@ -57,10 +69,6 @@ export default {
 @font-face {
   font-family: "WebRupee";
   src: url("./assets/font/WebRupee.V2.0.ttf");
-}
-
-#app,#app > div {
-  height: 100%;
 }
 
 .rs {
@@ -139,10 +147,6 @@ select {
 .mint-radio-label {
   font-size: 0.16rem;
 }
-
-// .swiper-slide {
-//   width: 100% !important;
-// }
 
 .mint-loadmore{
   .mint-loadmore-top{

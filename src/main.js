@@ -87,33 +87,33 @@ AxiosConfig.init();
 FontUtil.init();
 /* eslint-disable no-new */
 
-Vue.component('smart-list', { /* 函数式组件 */
-  functional: true,
-  props: {
-    items: {
-      type: [String, Object, Function],
-      required: true
-    },
-    isOrdered: Boolean
-  },
-  render: function (createElement, context) {
-    console.log(context.slots().default)
-    function appropriateList () {
-      if (context.props.isOrdered) return 'div'
-      return 'p'
-    }
-    return createElement(
-      appropriateList(),
-      context.data,
-      [ // context.children,
-        createElement('p', '我是函数式组件的 p1'),
-        createElement('p', '我是函数式组件的 p2'),
-        ...context.slots().default,
-        ...context.slots().foo,
-      ],
-    )
-  }
-})
+// Vue.component('smart-list', { /* 函数式组件 */
+//   functional: true,
+//   props: {
+//     items: {
+//       type: [String, Object, Function],
+//       required: true
+//     },
+//     isOrdered: Boolean
+//   },
+//   render: function (createElement, context) {
+//     console.log(context.slots().default)
+//     function appropriateList () {
+//       if (context.props.isOrdered) return 'div'
+//       return 'p'
+//     }
+//     return createElement(
+//       appropriateList(),
+//       context.data,
+//       [ // context.children,
+//         createElement('p', '我是函数式组件的 p1'),
+//         createElement('p', '我是函数式组件的 p2'),
+//         ...context.slots().default,
+//         ...context.slots().foo,
+//       ],
+//     )
+//   }
+// })
 
 new Vue({
   el: '#app',
@@ -123,6 +123,6 @@ new Vue({
     return h(App)
   }
 });
-new Vue({
-  el: '#app2',
-});
+// new Vue({
+//   el: '#app2',
+// });
